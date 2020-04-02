@@ -1,5 +1,5 @@
 # HaceneBlog
-![Node.js CI](https://github.com/kasdihacene/BlogCreator4Engineer/workflows/Node.js%20CI/badge.svg)
+![Blog-Build-Script CI](https://github.com/kasdihacene/BlogCreator4Engineer/workflows/Blog-Build-Script%20CI/badge.svg)
 
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 9.0.6.

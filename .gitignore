@@ -43,3 +43,7 @@ yarn-error.log
 .notes.md
 baseline.json
 .DS_Store
+
+# karma.config.js will be ignored in order to run correctly in Github CI workflow 
+# you can turn off the "singleRun: true" to be able to run tests on CI workflow. 
+karma.config.js

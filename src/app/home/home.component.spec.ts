@@ -57,7 +57,7 @@ describe('HomeComponent', () => {
     
     fixture.detectChanges();
     
-    expect(fixture.nativeElement.querySelectorAll('[data-test=articleItem]').length).toBe(3);
+    expect(fixture.nativeElement.querySelectorAll('[data-test=articleItem]').length).toBe(2);
   });
 
 

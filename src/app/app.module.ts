@@ -32,6 +32,10 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     ReactiveFormsModule
 
   ],
+  exports: [
+    NavBarComponent,
+    HomeUpdateComponent
+  ],
   providers: [
     InformationService,
     ArticleService],

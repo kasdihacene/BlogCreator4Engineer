@@ -10,7 +10,7 @@ describe('HomeComponent', () => {
     let component: HomeUpdateComponent;
     let fixture: ComponentFixture<HomeUpdateComponent>;
     // add mock of articleService
-    let articleService: jasmine.SpyObj<ArticleService>;
+  let articleService: jasmine.SpyObj<ArticleService>;
 
     beforeEach(async(() => {
         TestBed.configureTestingModule({
@@ -50,7 +50,7 @@ describe('HomeComponent', () => {
         expect(articleService.fetchArticles$.length).toBe(0);
 
         fixture.autoDetectChanges();
-
+        
         component.addArticle();
         expect(articleService.addArticle).toHaveBeenCalledTimes(1);
 

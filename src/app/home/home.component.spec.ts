@@ -40,18 +40,18 @@ describe('HomeComponent', () => {
         projectName : "Insrtance Project",
         publicationDate:"22/03/2020",
         author:"Hacene KASDI",
-        description:"To be completed ...",
-        descriptionImageUrl:"",
-        moreLink:"/"
+        abstract:"To be completed ...",
+        image:"",
+        link:"/"
       },
       {
         title: "Architecture microservices with spring cloud config",
         projectName : "Insrtance Project",
         publicationDate:"12/04/2020",
         author:"Hacene KASDI",
-        description:"To be completed ...",
-        descriptionImageUrl:"",
-        moreLink:"/"
+        abstract:"To be completed ...",
+        image:"",
+        link:"/"
       }
     ]));
     

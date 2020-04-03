@@ -5,8 +5,8 @@
         <div class="primary col-lg-12 col-12">
 
 
-
             <section class="latest section">
+                <app-home-update></app-home-update>
                 <div class="section-inner">
 
                     <h2 class="heading">Latest Posts </h2>
@@ -43,16 +43,16 @@
 
                         <div data-test="articleItem" *ngFor="let article of articles$ | async" class="item row">
 
-                            <a class="col-md-4 col-12" href={{article.moreLink}} target="_blank">
-                                <img class="img-fluid project-image" src="{{article.descriptionImageUrl}}" alt="{{article.projectName}}" />
+                            <a class="col-md-4 col-12" href={{article.link}} target="_blank">
+                                <img class="img-fluid project-image" src="{{article.image}}" alt="{{article.projectName}}" />
                             </a>
                             <div class="desc col-md-8 col-12">
                                 <h3 class="title">
-                                    <a href={{article.moreLink}} target="_blank">
+                                    <a href={{article.link}} target="_blank">
                                     {{article.title}}</a></h3>
                                 <p class="mb-2">
-                                    {{article.description}}</p>
-                                <p><a class="more-link" href={{article.moreLink}} target="_blank"><i class="fas fa-external-link-alt"></i>Find out more</a></p>
+                                    {{article.abstract}}</p>
+                                <p><a class="more-link" href={{article.link}} target="_blank"><i class="fas fa-external-link-alt"></i>Find out more</a></p>
                             </div>
                             <!--//desc-->
                         </div>

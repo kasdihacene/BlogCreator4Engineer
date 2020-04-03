@@ -9,6 +9,10 @@ import { InformationService } from './services/information.service';
 import { HomeComponent } from './home/home.component';
 import { AboutComponent } from './about/about.component';
 import { ArticleService } from './services/article.service';
+import { HomeUpdateComponent } from './home/home-update.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+
 
 @NgModule({
   declarations: [
@@ -16,11 +20,16 @@ import { ArticleService } from './services/article.service';
     BlogComponent,
     NavBarComponent,
     HomeComponent,
-    AboutComponent
+    AboutComponent,
+    HomeUpdateComponent
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    BrowserAnimationsModule,    
+    FormsModule,
+    ReactiveFormsModule
+    
   ],
   providers: [
     InformationService,

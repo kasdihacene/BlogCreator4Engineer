@@ -28,6 +28,14 @@ Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protrac
 
 To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
 
-## Installation of the project 
-> Angular metrial must be installed 
-> ng add @angular/material
+## Adding Auth Guard Angular 9 or our application
+### Auth Guard
+>The auth guard is an angular route guard that's used to prevent unauthorized users from accessing restricted routes, it does this by implementing the CanActivate interface which allows the guard to decide if a route can be activated with the canActivate() method. If the method returns true the route is activated (allowed to proceed), otherwise if the method returns false the route is blocked.
+
+- Steps : 
+
+To ckeck if a JWT is expired we have to use an angular component angular-jwt :
+> npm install --save @auth0/angular-jwt
+
+To implement the route Guard, we have to create Guard service and override canActivate method :
+> ng g guard security/auth

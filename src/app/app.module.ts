@@ -12,6 +12,7 @@ import { ArticleService } from './services/article.service';
 import { HomeUpdateComponent } from './home/home-update.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { AuthService } from './services/auth.service';
 
 
 @NgModule({
@@ -38,7 +39,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
   ],
   providers: [
     InformationService,
-    ArticleService],
+    ArticleService,
+    AuthService],
   bootstrap: [AppComponent, BlogComponent]
 })
 export class AppModule { }

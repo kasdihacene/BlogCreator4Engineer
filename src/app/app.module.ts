@@ -3,18 +3,19 @@ import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { BlogComponent } from './blog/blog.component';
-import { NavBarComponent } from './nav-bar/nav-bar.component';
+import { BlogComponent } from './components/blog/blog.component';
+import { NavBarComponent } from './components/nav-bar/nav-bar.component';
 import { InformationService } from './services/information.service';
-import { HomeComponent } from './home/home.component';
-import { AboutComponent } from './about/about.component';
+import { HomeComponent } from './components/home/home.component';
+import { AboutComponent } from './components/about/about.component';
 import { ArticleService } from './services/article.service';
-import { HomeUpdateComponent } from './home/home-update.component';
+import { HomeUpdateComponent } from './components/home/home-update.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { HttpClient, HttpClientModule } from '@angular/common/http';
+import { HttpClientModule } from '@angular/common/http';
 import { AuthService } from './services/auth.service';
 import { AuthGuardService } from './security/auth.guard';
+import { LoginComponent } from './components/login/login.component';
 
 
 
@@ -25,7 +26,8 @@ import { AuthGuardService } from './security/auth.guard';
     NavBarComponent,
     HomeComponent,
     AboutComponent,
-    HomeUpdateComponent
+    HomeUpdateComponent,
+    LoginComponent
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
   imports: [
@@ -42,7 +44,9 @@ import { AuthGuardService } from './security/auth.guard';
   ],
   providers: [
     InformationService,
-    ArticleService],
-  bootstrap: [AppComponent, BlogComponent]
+    ArticleService,
+    AuthService,
+    AuthGuardService],
+  bootstrap: [AppComponent]
 })
 export class AppModule { }

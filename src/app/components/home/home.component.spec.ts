@@ -1,11 +1,11 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { HomeComponent } from './home.component';
 import { spyOnClass } from "jasmine-es6-spies";
-import { ArticleService } from '../services/article.service';
+import { ArticleService } from '../../services/article.service';
 import { of } from 'rxjs';
-import { HttpClient, HttpClientModule } from '@angular/common/http';
-import { AuthService } from '../services/auth.service';
-import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
+import { HttpClient } from '@angular/common/http';
+import { AuthService } from '../../services/auth.service';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { Router } from '@angular/router';
 
 describe('HomeComponent', () => {

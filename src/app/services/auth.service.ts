@@ -2,13 +2,13 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders, HttpErrorResponse } from '@angular/common/http';
 import { catchError } from 'rxjs/operators';
 import { throwError, Observable } from 'rxjs';
-import { Token } from '../security/Token';
+import { Token } from '../models/Token';
 import * as jwt_decode from 'jwt-decode';
 
 @Injectable({ providedIn: 'root' })
 export class AuthService {
 
-  REST_API_SERVER = "http://localhost:9090/token/generate";
+  REST_API_SERVER = "http://localhost:9090";
   constructor(private httpClient: HttpClient) {
   }
 
@@ -36,20 +36,9 @@ export class AuthService {
       'Something bad happened; please try again later.');
   }
 
-  isAuthenticated(): boolean {
-    const token = localStorage.getItem('token');
-    return true;
-    //return !this.jwtHelper.isTokenExpired(token);
-  }
-
-  checkTokenValidation(token): boolean {
-
-    return false;
-  }
-
   public getToken(): Observable<Token> {
     return this.httpClient
-      .get<Token>(this.REST_API_SERVER, this.httpOptions)
+      .get<Token>(this.REST_API_SERVER.concat("/token/generate"), this.httpOptions)
       .pipe(catchError(this.handleError))
   }
 
@@ -61,15 +50,44 @@ export class AuthService {
     return date;
   }
 
-  public isTokenExpired(token: string): boolean {
-    if (token === undefined) return false;
+  isUserAuthenticated(): boolean {
+    const token = localStorage.getItem('TOKEN');
+    return !this.isExpired(token);
+  }
+
+  private persistToken(token: string) {
+    localStorage.setItem("TOKEN", token)
+  }
+
+  public removeToken() {
+    localStorage.removeItem("TOKEN")
+  }
+  
+  public validateAndPersist(token: string): boolean {
+
+    const expired = this.isExpired(token);
+    if (expired == false) {
+      this.persistToken(token);
+      return true;
+    }
+
+    return false;
+  }
+
+  public isExpired(token: string): boolean {
+    if (token === null || token === undefined) return true;
     const currentDate = new Date();
     const expirationDate = this.decode(token);
 
-    console.log(currentDate);
-    console.log(expirationDate);
-
     return currentDate > expirationDate;
+  }
+
+  public login(email: string, psword: string) {
+
+    const body = { "email": email, "psword": psword };
+    return this.httpClient
+      .post(this.REST_API_SERVER.concat("/user/azul"), body, this.httpOptions)
+      .pipe(catchError(this.handleError));
   }
 
 

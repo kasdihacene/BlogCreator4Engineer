@@ -1,9 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
-import { ArticleService } from '../services/article.service';
-import { AuthService } from '../services/auth.service';
-import { Token } from '../security/Token';
-import { HttpErrorResponse } from '@angular/common/http';
+import { ArticleService } from '../../services/article.service';
+import { AuthService } from '../../services/auth.service';
 
 @Component({
   selector: 'app-home-update',
@@ -14,7 +12,8 @@ export class HomeUpdateComponent implements OnInit {
 
   constructor(private articleService: ArticleService, private authService: AuthService) { }
 
-  articleForm;
+  articleForm: FormGroup;
+  isUserAuthenticated : boolean;
 
   get fields() {
     return this.articleForm.controls;
@@ -31,15 +30,7 @@ export class HomeUpdateComponent implements OnInit {
 
   ngOnInit(): void {
 
-    this.authService.getToken().subscribe(
-      (tokenEntity: Token) => {
-        this.authService.isTokenExpired(tokenEntity.token);
-        console.log(tokenEntity.token);
-      },
-      (error: HttpErrorResponse) => {
-        console.log(error);
-      });;
-
+    this.isUserAuthenticated = this.authService.isUserAuthenticated();
 
     this.articleForm = new FormGroup({
       title: new FormControl('', [Validators.required, Validators.minLength(10)]),

@@ -1,12 +1,12 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { HomeComponent } from './home.component';
 import { spyOnClass } from "jasmine-es6-spies";
-import { ArticleService } from '../services/article.service';
+import { ArticleService } from '../../services/article.service';
 import { HomeUpdateComponent } from './home-update.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 
-import { AuthService } from '../services/auth.service';
+import { AuthService } from '../../services/auth.service';
 import { HttpClientModule, HttpClient } from '@angular/common/http';
 
 describe('HomeAddComponent', () => {

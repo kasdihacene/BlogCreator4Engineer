@@ -12,7 +12,10 @@ import { ArticleService } from './services/article.service';
 import { HomeUpdateComponent } from './home/home-update.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { AuthService } from './services/auth.service';
+import { AuthGuardService } from './security/auth.guard';
+
 
 
 @NgModule({
@@ -30,8 +33,8 @@ import { AuthService } from './services/auth.service';
     AppRoutingModule,
     BrowserAnimationsModule,
     FormsModule,
-    ReactiveFormsModule
-
+    ReactiveFormsModule,
+    HttpClientModule
   ],
   exports: [
     NavBarComponent,
@@ -39,8 +42,7 @@ import { AuthService } from './services/auth.service';
   ],
   providers: [
     InformationService,
-    ArticleService,
-    AuthService],
+    ArticleService],
   bootstrap: [AppComponent, BlogComponent]
 })
 export class AppModule { }

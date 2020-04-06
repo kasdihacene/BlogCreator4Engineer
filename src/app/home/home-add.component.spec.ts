@@ -4,19 +4,24 @@ import { spyOnClass } from "jasmine-es6-spies";
 import { ArticleService } from '../services/article.service';
 import { HomeUpdateComponent } from './home-update.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
 
-describe('HomeComponent', () => {
+import { AuthService } from '../services/auth.service';
+import { HttpClientModule, HttpClient } from '@angular/common/http';
+
+describe('HomeAddComponent', () => {
 
     let component: HomeUpdateComponent;
     let fixture: ComponentFixture<HomeUpdateComponent>;
     // add mock of articleService
-  let articleService: jasmine.SpyObj<ArticleService>;
+    let articleService: jasmine.SpyObj<ArticleService>;
 
     beforeEach(async(() => {
         TestBed.configureTestingModule({
-            imports: [ReactiveFormsModule, FormsModule],
+            imports: [ReactiveFormsModule, FormsModule, HttpClientTestingModule],
             declarations: [HomeComponent, HomeUpdateComponent],
             providers: [{
+                HttpClientModule, HttpClient, AuthService,
                 provide: ArticleService, useFactory: () => spyOnClass(ArticleService)
             }]
         })
@@ -50,7 +55,7 @@ describe('HomeComponent', () => {
         expect(articleService.fetchArticles$.length).toBe(0);
 
         fixture.autoDetectChanges();
-        
+
         component.addArticle();
         expect(articleService.addArticle).toHaveBeenCalledTimes(1);
 

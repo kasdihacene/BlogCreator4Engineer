@@ -3,6 +3,10 @@ import { HomeComponent } from './home.component';
 import { spyOnClass } from "jasmine-es6-spies";
 import { ArticleService } from '../services/article.service';
 import { of } from 'rxjs';
+import { HttpClient, HttpClientModule } from '@angular/common/http';
+import { AuthService } from '../services/auth.service';
+import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
+import { Router } from '@angular/router';
 
 describe('HomeComponent', () => {
 
@@ -13,8 +17,12 @@ describe('HomeComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
+      
+      imports: [HttpClientTestingModule],
+
       declarations: [HomeComponent],
       providers: [{
+        HttpClient,AuthService,
         provide: ArticleService, useFactory: () => spyOnClass(ArticleService)
       }]
     })

@@ -33,7 +33,8 @@ export class LoginComponent implements OnInit {
 
     this.authentificationService.login(email, psword).subscribe(
       (user: User) => {
-        const isValid = this.authentificationService.validateAndPersist(user.token.token);
+        console.log(user);
+        const isValid = this.authentificationService.validateAndPersist(user.token);
         console.log(isValid);
         if (isValid) {
           return this.router.navigate(['home']);

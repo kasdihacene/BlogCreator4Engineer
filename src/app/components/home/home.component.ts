@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ArticleService } from "../../services/article.service";
+import { Post } from 'src/app/models/Post';
 
 @Component({
   selector: 'app-home',
@@ -8,12 +9,44 @@ import { ArticleService } from "../../services/article.service";
 })
 export class HomeComponent implements OnInit {
 
-  articles$;
+  postArticles$: Post[];
+  recentPost: Post;
 
-  constructor(private articleService : ArticleService) { }
+  constructor(private articleService: ArticleService) { }
 
   ngOnInit(): void {
-    this.articles$ = this.articleService.fetchArticles$();
+    this.getAllPosts();
+  }
+
+  private getAllPosts(): void {
+    try {
+      this.articleService.fetchPosts().subscribe(
+        response => {
+          if (response == null) {
+            console.log("No post published yet.");
+          }
+          console.log("get all posts : " + response);
+          let posts: Post[] = JSON.parse(JSON.stringify(response)).posts;
+          this.recentPost = posts.pop();
+          this.postArticles$ = posts;
+
+          return this.postArticles$;
+        },
+        error => {
+          console.log("An error accured => " + error);
+        }
+      );
+    } catch (error) {
+      console.log("ERROR when fetching Posts.");
+      console.log("-> " + error);
+    }
+  }
+
+  receiveMessage($event) {
+    console.log("----> " + $event);
+    setTimeout(() => {
+      this.getAllPosts();
+    }, 3000);
   }
 
 }

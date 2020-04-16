@@ -1,38 +1,60 @@
 import { Injectable } from '@angular/core';
-import { of } from 'rxjs';
+import { of, throwError, Observable } from 'rxjs';
+import { HttpClient, HttpHeaders, HttpErrorResponse } from '@angular/common/http';
+import { catchError, tap } from 'rxjs/operators';
+import { Post } from '../models/Post';
+import { GlobalVariables } from '../models/global-variables';
 
 @Injectable({
   providedIn: 'root'
 })
-
 export class ArticleService {
 
-  constructor() { }
 
-  articles = [{
-    title: "Instance - Bootstrap 4 Portfolio Theme for Aspiring Full Stack Developers",
-    projectName : "Insrtance Project",
-    publicationDate:"12/04/2020",
-    author:"Hacene KASDI",
-    abstract:"You can put one of your secondary projects here. Suspendisse in tellus dolor Vivamus a tortor eu turpis pharetra consequat quis non metus. Aliquam aliquam, orci eu suscipit pellentesque, mauris dui tincidunt enim, eget iaculis ante dolor non turpis.",
-    image:"assets/images/projects/project-1.png",
-    link:"https://themes.3rdwavemedia.com/bootstrap-templates/resume/instance-bootstrap-portfolio-theme-for-developers/"
-  },
-  {
-    title: "Instance - Bootstrap 4 Portfolio Theme for Aspiring Full Stack Developers",
-    projectName : "Insrtance Project",
-    publicationDate:"12/04/2020",
-    author:"Hacene KASDI",
-    abstract:"You can put one of your secondary projects here. Suspendisse in tellus dolor Vivamus a tortor eu turpis pharetra consequat quis non metus. Aliquam aliquam, orci eu suscipit pellentesque, mauris dui tincidunt enim, eget iaculis ante dolor non turpis",
-    image:"assets/images/projects/project-1.png",
-    link:"https://themes.3rdwavemedia.com/bootstrap-templates/resume/instance-bootstrap-portfolio-theme-for-developers/"
-  }];
-
-  addArticle(article){
-    this.articles.push(article);
+  REST_API_SERVER = "https://hmu-dedikabylie.chickenkiller.com:8443";
+  //REST_API_SERVER = "http://localhost:8443";
+  constructor(private httpClient: HttpClient) {
   }
 
-  fetchArticles$(){
-    return of(this.articles);
+  // Handle API errors
+  handleError(error: HttpErrorResponse) {
+    if (error.error instanceof ErrorEvent) {
+      console.error('An error occurred:', error.error.message);
+    } else {
+      console.log(error);
+      console.error(
+        `Backend returned code ${error.status}, ` +
+        `body was: ${error.error}`);
+    }
+    return throwError(
+      'Something bad happened; please try again later.');
   }
+
+  addArticle(post) {
+
+    return this.httpClient
+      .post(this.REST_API_SERVER.concat("/post/insert"), post)
+      .pipe(catchError(this.handleError)).subscribe(
+        (article: Post) => {
+          return article;
+        },
+        (error: HttpErrorResponse) => {
+          console.log(error);
+        });
+  }
+
+  posts$: Post[];
+
+  fetchPosts(): Observable<Post[]> {
+    return this.httpClient
+      .get(this.REST_API_SERVER.concat("/post/all"))
+      .pipe(
+        tap((data: Post[]) => {
+          return data;
+        }),
+        catchError(this.handleError)
+      );
+  }
+
+
 }

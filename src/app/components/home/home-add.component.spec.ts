@@ -45,14 +45,18 @@ describe('HomeAddComponent', () => {
 
     it('An article should be added when calling addArticle', () => {
         articleService = TestBed.get(ArticleService);
+        
+        // The user should be authenticated displayed 
+        component.isUserAuthenticated = true; 
+        
         component.articleForm.controls['title'].setValue("an awesome article was published");
         component.articleForm.controls['projectName'].setValue("project name for test");
         component.articleForm.controls['link'].setValue("this is a link");
         component.articleForm.controls['author'].setValue("it's me");
-        component.articleForm.controls['abstract'].setValue("this is the abstract");
+        component.articleForm.controls['anAbstract'].setValue("this is the abstract");
 
         expect(component.articleForm.valid).toBe(true);
-        expect(articleService.fetchArticles$.length).toBe(0);
+        expect(articleService.fetchPosts.length).toBe(0);
 
         fixture.autoDetectChanges();
 

@@ -4,11 +4,13 @@ import { catchError } from 'rxjs/operators';
 import { throwError, Observable } from 'rxjs';
 import { Token } from '../models/Token';
 import * as jwt_decode from 'jwt-decode';
+import { GlobalVariables } from '../models/global-variables';
 
 @Injectable({ providedIn: 'root' })
 export class AuthService {
 
-  REST_API_SERVER = "http://localhost:9090";
+  REST_API_SERVER = "https://hmu-dedikabylie.chickenkiller.com:8443";
+  //REST_API_SERVER = "http://localhost:8443";
   constructor(private httpClient: HttpClient) {
   }
 
@@ -22,16 +24,12 @@ export class AuthService {
   // Handle API errors
   handleError(error: HttpErrorResponse) {
     if (error.error instanceof ErrorEvent) {
-      // A client-side or network error occurred. Handle it accordingly.
       console.error('An error occurred:', error.error.message);
     } else {
-      // The backend returned an unsuccessful response code.
-      // The response body may contain clues as to what went wrong,
       console.error(
         `Backend returned code ${error.status}, ` +
         `body was: ${error.error}`);
     }
-    // return an observable with a user-facing error message
     return throwError(
       'Something bad happened; please try again later.');
   }
@@ -53,6 +51,11 @@ export class AuthService {
   isUserAuthenticated(): boolean {
     const token = localStorage.getItem('TOKEN');
     return !this.isExpired(token);
+  }
+  
+  getLocalToken(){
+    const token = localStorage.getItem('TOKEN');
+    return token;
   }
 
   private persistToken(token: string) {
@@ -86,7 +89,7 @@ export class AuthService {
 
     const body = { "email": email, "psword": psword };
     return this.httpClient
-      .post(this.REST_API_SERVER.concat("/user/azul"), body, this.httpOptions)
+      .post(this.REST_API_SERVER.concat("/user/login"), body, this.httpOptions)
       .pipe(catchError(this.handleError));
   }
 

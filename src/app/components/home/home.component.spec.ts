@@ -2,27 +2,28 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { HomeComponent } from './home.component';
 import { spyOnClass } from "jasmine-es6-spies";
 import { ArticleService } from '../../services/article.service';
-import { of } from 'rxjs';
-import { HttpClient } from '@angular/common/http';
+import { HttpClientModule, HttpClient } from '@angular/common/http';
 import { AuthService } from '../../services/auth.service';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
-import { Router } from '@angular/router';
+import { FormsModule } from '@angular/forms';
+import { Post } from 'src/app/models/Post';
 
 describe('HomeComponent', () => {
 
   let component: HomeComponent;
   let fixture: ComponentFixture<HomeComponent>;
-  // add mock of articleService
-  let articleService: jasmine.SpyObj<ArticleService>;
+
+  let httpClient: HttpClient;
+  let articleService: ArticleService;
+
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      
-      imports: [HttpClientTestingModule],
 
+      imports: [FormsModule, HttpClientTestingModule],
       declarations: [HomeComponent],
       providers: [{
-        HttpClient,AuthService,
+        HttpClientModule, HttpClient, AuthService,
         provide: ArticleService, useFactory: () => spyOnClass(ArticleService)
       }]
     })
@@ -41,31 +42,35 @@ describe('HomeComponent', () => {
 
   // Mocking Article Service
   it('should return correct fields of article in blog', () => {
-    articleService = TestBed.get(ArticleService);
-    articleService.fetchArticles$.and.returnValue(of([
+
+    // Spy on and mock httpClient 
+    httpClient = TestBed.get(HttpClient);
+    let posts: Post[];
+    posts = [
       {
         title: "Power of streams in java 8",
-        projectName : "Insrtance Project",
-        publicationDate:"22/03/2020",
-        author:"Hacene KASDI",
-        abstract:"To be completed ...",
-        image:"",
-        link:"/"
+        projectName: "Insrtance Project",
+        dateTime: "22/03/2020",
+        link: "/",
+        author: "Hacene KASDI",
+        anAbstract: "To be completed ...",
+        image: ""
       },
       {
-        title: "Architecture microservices with spring cloud config",
-        projectName : "Insrtance Project",
-        publicationDate:"12/04/2020",
-        author:"Hacene KASDI",
-        abstract:"To be completed ...",
-        image:"",
-        link:"/"
+        title: "Power of streams in java 8",
+        projectName: "Insrtance Project",
+        dateTime: "22/03/2020",
+        link: "/",
+        author: "Hacene KASDI",
+        anAbstract: "To be completed ...",
+        image: ""
       }
-    ]));
-    
-    fixture.detectChanges();
-    
-    expect(fixture.nativeElement.querySelectorAll('[data-test=articleItem]').length).toBe(2);
+    ];
+    // Use our service to get list of posts
+
+    // Verify that our service returns the mocked data as supposed
+
+    // Verify that the service call the right Http endpoint
   });
 
 

@@ -50,7 +50,7 @@ describe('HomeComponent', () => {
       {
         title: "Power of streams in java 8",
         projectName: "Insrtance Project",
-        dateTime: "22/03/2020",
+        publicationDate: "22/03/2020",
         link: "/",
         author: "Hacene KASDI",
         anAbstract: "To be completed ...",
@@ -59,7 +59,7 @@ describe('HomeComponent', () => {
       {
         title: "Power of streams in java 8",
         projectName: "Insrtance Project",
-        dateTime: "22/03/2020",
+        publicationDate: "22/03/2020",
         link: "/",
         author: "Hacene KASDI",
         anAbstract: "To be completed ...",

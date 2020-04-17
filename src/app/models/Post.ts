@@ -2,7 +2,7 @@ export interface Post {
 
     title: string;
     projectName: string;
-    dateTime: string;
+    publicationDate: string;
     link: string;
     author: string;
     anAbstract: string;

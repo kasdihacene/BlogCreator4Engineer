@@ -3,18 +3,17 @@ import { of, throwError, Observable } from 'rxjs';
 import { HttpClient, HttpHeaders, HttpErrorResponse } from '@angular/common/http';
 import { catchError, tap } from 'rxjs/operators';
 import { Post } from '../models/Post';
-import { GlobalVariables } from '../models/global-variables';
+import { environment } from '../../environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ArticleService {
 
+  REST_API_SERVER = environment._ENDPOINT_SERVER_API;
+  posts$: Post[];
 
-  REST_API_SERVER = "https://hmu-dedikabylie.chickenkiller.com:8443";
-  //REST_API_SERVER = "http://localhost:8443";
-  constructor(private httpClient: HttpClient) {
-  }
+  constructor(private httpClient: HttpClient) { }
 
   // Handle API errors
   handleError(error: HttpErrorResponse) {
@@ -30,10 +29,10 @@ export class ArticleService {
       'Something bad happened; please try again later.');
   }
 
-  addArticle(post) {
 
+  addArticle(post) {
     return this.httpClient
-      .post(this.REST_API_SERVER.concat("/post/insert"), post)
+      .post(this.REST_API_SERVER.concat(environment._ENDPOINT_InsertPost), post)
       .pipe(catchError(this.handleError)).subscribe(
         (article: Post) => {
           return article;
@@ -43,11 +42,10 @@ export class ArticleService {
         });
   }
 
-  posts$: Post[];
 
   fetchPosts(): Observable<Post[]> {
     return this.httpClient
-      .get(this.REST_API_SERVER.concat("/post/all"))
+      .get(this.REST_API_SERVER.concat(environment._ENDPOINT_AllPosts))
       .pipe(
         tap((data: Post[]) => {
           return data;

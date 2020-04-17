@@ -14,7 +14,9 @@ Run `ng generate component component-name` to generate a new component. You can 
 
 ## Build
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
+Run `ng build` to build the project. The build artifacts will be stored in the `production/` directory. Use the `--prod` flag for a production build.
+
+                ng build --prod --output-path production
 
 ## Running unit tests
 
@@ -35,7 +37,16 @@ To get more help on the Angular CLI use `ng help` or go check out the [Angular C
 - Steps : 
 
 To ckeck if a JWT is expired we have to use an angular component angular-jwt :
-> npm install --save @auth0/angular-jwt
+
+        npm install --save @auth0/angular-jwt
 
 To implement the route Guard, we have to create Guard service and override canActivate method :
-> ng g guard security/auth
+
+        ng g guard security/auth
+
+### Using HashLocationStrategy on production
+    On production when reload the page we will have the 404 error
+    because : With client-side SPAs we have two strategies we can 
+    use to implement client-side routing, one is called the HashLocationStrategy 
+    and the other is called the PathLocationStrategy which is activated by default.
+    On PRODUCTION we will see the '#' character on URLs

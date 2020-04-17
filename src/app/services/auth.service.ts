@@ -4,22 +4,14 @@ import { catchError } from 'rxjs/operators';
 import { throwError, Observable } from 'rxjs';
 import { Token } from '../models/Token';
 import * as jwt_decode from 'jwt-decode';
-import { GlobalVariables } from '../models/global-variables';
+import { environment } from '../../environments/environment';
 
 @Injectable({ providedIn: 'root' })
 export class AuthService {
 
-  REST_API_SERVER = "https://hmu-dedikabylie.chickenkiller.com:8443";
-  //REST_API_SERVER = "http://localhost:8443";
-  constructor(private httpClient: HttpClient) {
-  }
+  REST_API_SERVER = environment._ENDPOINT_SERVER_API;
 
-  // Http Options
-  httpOptions = {
-    headers: new HttpHeaders({
-      'Content-Type': 'application/json'
-    })
-  };
+  constructor(private httpClient: HttpClient) { }
 
   // Handle API errors
   handleError(error: HttpErrorResponse) {
@@ -36,7 +28,7 @@ export class AuthService {
 
   public getToken(): Observable<Token> {
     return this.httpClient
-      .get<Token>(this.REST_API_SERVER.concat("/token/generate"), this.httpOptions)
+      .get<Token>(this.REST_API_SERVER.concat(environment._ENDPOINT_TokenGenerate))
       .pipe(catchError(this.handleError))
   }
 
@@ -49,23 +41,23 @@ export class AuthService {
   }
 
   isUserAuthenticated(): boolean {
-    const token = localStorage.getItem('TOKEN');
+    const token = localStorage.getItem(environment._LOCALSTORAGE_TOKEN);
     return !this.isExpired(token);
   }
-  
-  getLocalToken(){
-    const token = localStorage.getItem('TOKEN');
+
+  getLocalToken() {
+    const token = localStorage.getItem(environment._LOCALSTORAGE_TOKEN);
     return token;
   }
 
   private persistToken(token: string) {
-    localStorage.setItem("TOKEN", token)
+    localStorage.setItem(environment._LOCALSTORAGE_TOKEN, token)
   }
 
   public removeToken() {
-    localStorage.removeItem("TOKEN")
+    localStorage.removeItem(environment._LOCALSTORAGE_TOKEN)
   }
-  
+
   public validateAndPersist(token: string): boolean {
 
     const expired = this.isExpired(token);
@@ -89,7 +81,7 @@ export class AuthService {
 
     const body = { "email": email, "psword": psword };
     return this.httpClient
-      .post(this.REST_API_SERVER.concat("/user/login"), body, this.httpOptions)
+      .post(this.REST_API_SERVER.concat(environment._ENDPOINT_Login), body)
       .pipe(catchError(this.handleError));
   }
 

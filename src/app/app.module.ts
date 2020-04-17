@@ -49,7 +49,14 @@ import { HashLocationStrategy, LocationStrategy } from '@angular/common';
     ArticleService,
     AuthService,
     AuthGuardService,
+    
+    // On production when reload the page we will have the 404 error
+    // because : With client-side SPAs we have two strategies we can 
+    // use to implement client-side routing, one is called the HashLocationStrategy 
+    // and the other is called the PathLocationStrategy which is activated by default.
+    // on PRODUCTION we will see the '#' character on URLs
     { provide: LocationStrategy, useClass: HashLocationStrategy },
+    
     {
       provide: HTTP_INTERCEPTORS,
       useClass: HttpInterceptorService,

@@ -9,15 +9,14 @@ import { Router } from '@angular/router';
 })
 export class NavBarComponent implements OnInit {
 
-  isUserAuthenticated : boolean;
+  isUserAuthenticated: boolean;
 
-  constructor(private authService: AuthService, private router: Router) {
-  }
-  
+  constructor(private authService: AuthService, private router: Router) { }
+
   ngOnInit(): void {
     this.isUserAuthenticated = this.authService.isUserAuthenticated();
   }
-  
+
   onLogOut() {
     this.authService.removeToken();
     this.isUserAuthenticated = this.authService.isUserAuthenticated();

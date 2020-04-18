@@ -12,7 +12,7 @@ import { ArticleService } from './services/article.service';
 import { HomeUpdateComponent } from './components/home/home-update.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS, HttpClientXsrfModule } from '@angular/common/http';
 import { AuthService } from './services/auth.service';
 import { AuthGuardService } from './security/auth.guard';
 import { LoginComponent } from './components/login/login.component';
@@ -38,7 +38,11 @@ import { HashLocationStrategy, LocationStrategy } from '@angular/common';
     BrowserAnimationsModule,
     FormsModule,
     ReactiveFormsModule,
-    HttpClientModule
+    HttpClientModule,    
+    HttpClientXsrfModule.withOptions({
+      cookieName: 'XSRF-TOKEN',
+      headerName: 'X-CSRF-TOKEN'
+    })
   ],
   exports: [
     NavBarComponent,

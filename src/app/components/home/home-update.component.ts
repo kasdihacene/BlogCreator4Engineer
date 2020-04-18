@@ -28,7 +28,7 @@ export class HomeUpdateComponent implements OnInit {
     this.articleService.addArticle(this.articleForm.value);
     // Reset the fields of the Article form
     this.messageEvent.emit("POST-ADDING");
-    //this.articleForm.reset();
+    this.articleForm.reset();
   }
 
   ngOnInit(): void {

@@ -5,10 +5,10 @@
 <!-- ******HEADER****** -->
 <header class="header">
     <div class="container clearfix">
-        <img class="profile-image rounded-circle img-fluid float-left" src="assets/images/hacene-kasdi-avatar.jpg" alt="Hacene KASDI" />
+        <img data-test="image" class="profile-image rounded-circle img-fluid float-left" [src]=basicInformation$?.image alt={{basicInformation$?.fullname}} />
         <div class="profile-content float-left">
-            <h1 class="name">Hacene KASDI</h1>
-            <h2 class="desc">FullStack craftsman engineer</h2>
+            <h1 data-test="fullname" class="name">{{basicInformation$?.fullname}}</h1>
+            <h2 data-test="profile" class="desc">{{basicInformation$?.profile}}</h2>
             <ul class="social list-inline">
                 <li class="list-inline-item"><a href="#"><i class="fab fa-twitter"></i></a></li>
                 <li class="list-inline-item"><a href="#"><i class="fab fa-medium-m"></i></a></li>
@@ -41,9 +41,19 @@
                     <h2 class="heading sr-only">Basic Information</h2>
                     <div class="content">
                         <ul class="list-unstyled">
-                            <li><i class="fas fa-map-marker-alt"></i><span class="sr-only">Location:</span>San Francisco, US</li>
-                            <li><i class="fas fa-envelope"></i><span class="sr-only">Email:</span><a href="#">jameslee@website.com</a></li>
-                            <li><i class="fas fa-link"></i><span class="sr-only">Website:</span><a href="#">https://www.website.com</a></li>
+                            <li><i class="fas fa-map-marker-alt"></i><span class="sr-only">Location:</span>
+                                <span data-test="address">{{basicInformation$?.address}}</span>
+                            </li>
+                            <li><i class="fas fa-envelope"></i><span class="sr-only">Email:</span>
+                                <a href="#">
+                                    <span data-test="email">{{basicInformation$?.email}}</span>
+                                </a>
+                            </li>
+                            <li><i class="fas fa-link"></i><span class="sr-only">Website:</span>
+                                <a href="#">
+                                    <span data-test="website">{{basicInformation$?.website}}</span>
+                                </a>
+                            </li>
                         </ul>
                     </div>
                     <!--//content-->

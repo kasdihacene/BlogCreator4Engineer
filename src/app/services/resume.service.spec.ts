@@ -74,7 +74,6 @@ describe('ResumeService', () => {
     
     // verify that the service called with a proper endpoint
     expect(httpClient.get).toHaveBeenCalledWith(REST_API_SERVER.concat("/social_network"));
-
   });
 
 

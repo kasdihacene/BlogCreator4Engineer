@@ -31,9 +31,10 @@ export class ResumeService {
   
   fetchBasicInformation$(): Observable<Information> {
     return this.httpClient
-      .get(this.REST_API_SERVER.concat("/informations"))
+      .get(this.REST_API_SERVER.concat(environment._ENDPOINT_JSON_INFOS))
       .pipe(
         tap((data: Information) => {
+          console.log("---> "+data);
           return data;
         }),
         catchError(this.handleError)
@@ -42,7 +43,7 @@ export class ResumeService {
 
   fetchProNetworks$() : Observable<Social> {
     return this.httpClient
-      .get(this.REST_API_SERVER.concat("/social_network"))
+      .get(this.REST_API_SERVER.concat(environment._ENDPOINT_JSON_SOCIALS))
       .pipe(
         tap((data: Social) => {
           return data;

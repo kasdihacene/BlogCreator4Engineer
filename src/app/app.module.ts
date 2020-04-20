@@ -54,7 +54,7 @@ import { ResumeService } from './services/resume.service';
     ArticleService,
     AuthService,
     AuthGuardService,
-    ResumeService
+    ResumeService,
     
     // On production when reload the page we will have the 404 error
     // because : With client-side SPAs we have two strategies we can 
@@ -68,6 +68,7 @@ import { ResumeService } from './services/resume.service';
       useClass: HttpInterceptorService,
       multi: true
     },],
+    
   bootstrap: [AppComponent]
 })
 export class AppModule { }

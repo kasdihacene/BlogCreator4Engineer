@@ -4,3 +4,7 @@
     width: 90%;
     font-weight: bold;
 }
+
+.productionDate {
+    float: right;
+}

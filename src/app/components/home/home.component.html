@@ -1,0 +1,82 @@
+<!-- NAV BAR COMPONENT -->
+<app-nav-bar></app-nav-bar>
+<!-- /NAV BAR COMPONENT -->
+
+<div class="container sections-wrapper">
+
+
+    <div class="row">
+        <div class="primary col-lg-12 col-12">
+
+
+            <section class="latest section">
+                <app-home-update (messageEvent)="receiveMessage($event)"></app-home-update>
+                <div class="section-inner">
+
+                    <h2 *ngIf="recentPost" class="heading">Latest Posts </h2>
+                    <div class="content">
+
+                        <div class="item featured text-center" *ngIf="!postArticles$">
+                            <h3>
+                                NO CONTENT PUBLISHED YET
+                            </h3>
+                        </div>
+                        <div class="item featured text-center" *ngIf="recentPost">
+                            <h3 class="title"><a href="{{recentPost.link}}" target="_blank">{{recentPost.title}}</a></h3>
+                            <p class="summary">{{recentPost.projectName}}</p>
+                            <div class="featured-image has-ribbon">
+                                <a href={{recentPost.link}} target="_blank">
+                                    <img class="img-fluid project-image" src={{recentPost.image}} alt="project name" />
+                                </a>
+                                <div class="ribbon">
+                                    <div class="text">New</div>
+                                </div>
+                            </div>
+                            <div class="desc text-left">
+                                <p>{{recentPost.anAbstract}}</p>
+                            </div>
+                            <div class="col-sm-12 tags">
+                                #SpringBoot #CleanCode #Microservices #Angular #CloudAzure #SteamAPI #JAVA8 #LambdaExpression
+                            </div>
+                            <!--//desc-->
+                            <a class="btn btn-cta-secondary" href={{recentPost.link}} target="_blank"><i class="fas fa-thumbs-up"></i> Read article</a>
+                        </div>
+
+                        <!--//item-->
+                        <hr class="divider" />
+
+                        <div data-test="articleItem" *ngFor="let article of postArticles$ " class="item row">
+
+                            <a class="col-md-4 col-12" href={{article.link}} target="_blank">
+                                <img class="img-fluid project-image" src="{{article.image}}" alt="{{article.projectName}}" />
+                            </a>
+                            <div class="desc col-md-8 col-12">
+                                <h3 class="title productionDate">
+                                    {{article.publicationDate}}
+                                </h3>
+                                <h3 class="title"><a href={{article.link}} target="_blank">
+                                    {{article.title}}</a>
+                                </h3>
+                                <p class="mb-2">
+                                    {{article.anAbstract}}</p>
+                                <p><a class="more-link" href={{article.link}} target="_blank"><i class="fas fa-external-link-alt"></i>Find out more</a></p>
+                            </div>
+                            <!--//desc-->
+                        </div>
+                        <!--//item-->
+
+                    </div>
+                    <!--//content-->
+                </div>
+                <!--//section-inner-->
+            </section>
+            <!--//section-->
+
+        </div>
+        <!--//primary-->
+
+    </div>
+    <!--//row-->
+
+</div>
+<!--//masonry-->

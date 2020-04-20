@@ -1,5 +1,6 @@
 .DS_STORE
 
+/production/
 /dist/
 /bazel-out
 /integration/bazel/bazel-*
@@ -43,3 +44,7 @@ yarn-error.log
 .notes.md
 baseline.json
 .DS_Store
+
+# karma.conf.js will be ignored in order to run correctly in Github CI workflow 
+# you can turn off the "singleRun: true" to be able to run tests on CI workflow. 
+karma.conf.js

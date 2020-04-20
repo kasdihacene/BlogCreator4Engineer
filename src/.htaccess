@@ -1,0 +1,13 @@
+# For instructions and new versions of this Gist go to:
+# https://gist.github.com/julianpoemp/bcf277cb56d2420cc53ec630a04a3566
+# Version 1.4.0
+
+<IfModule mod_rewrite.c>
+	RewriteEngine On
+
+ 	# -- REDIRECTION to https:
+	RewriteCond %{HTTPS} !on
+  	RewriteRule (.*) https://%{HTTP_HOST}%{REQUEST_URI}
+	# --
+
+</IfModule>

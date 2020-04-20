@@ -34,18 +34,17 @@ export class ResumeService {
       .get(this.REST_API_SERVER.concat(environment._ENDPOINT_JSON_INFOS))
       .pipe(
         tap((data: Information) => {
-          console.log("---> "+data);
           return data;
         }),
         catchError(this.handleError)
       );
   }
 
-  fetchProNetworks$() : Observable<Social> {
+  fetchProNetworks$() : Observable<Social[]> {
     return this.httpClient
       .get(this.REST_API_SERVER.concat(environment._ENDPOINT_JSON_SOCIALS))
       .pipe(
-        tap((data: Social) => {
+        tap((data: Social[]) => {
           return data;
         }),
         catchError(this.handleError)

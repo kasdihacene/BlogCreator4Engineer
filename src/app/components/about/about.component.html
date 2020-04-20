@@ -10,14 +10,7 @@
             <h1 data-test="fullname" class="name">{{basicInformation$?.fullname}}</h1>
             <h2 data-test="profile" class="desc">{{basicInformation$?.profile}}</h2>
             <ul class="social list-inline">
-                <li class="list-inline-item"><a href="#"><i class="fab fa-twitter"></i></a></li>
-                <li class="list-inline-item"><a href="#"><i class="fab fa-medium-m"></i></a></li>
-                <li class="list-inline-item"><a href="#"><i class="fab fa-linkedin-in"></i></a></li>
-                <li class="list-inline-item"><a href="#"><i class="fab fa-github-alt"></i></a></li>
-                <!--
-                    <li class="list-inline-item"><a href="#"><i class="fab fa-stack-overflow"></i></a></li>
-                    <li class="list-inline-item last-item"><a href="#"><i class="fab fa-codepen"></i></a></li>
-                -->
+                <li data-test="socials" *ngFor="let social of professionalSocials$" class="list-inline-item"><a href={{social.link}}><i class={{social.fa_bootstrap}}></i></a></li>
             </ul>
         </div>
         <!--//profile-->

@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ResumeService } from 'src/app/services/resume.service';
 import { Information } from 'src/app/models/Information';
+import { Social } from 'src/app/models/Social';
 
 @Component({
   selector: 'app-about',
@@ -11,10 +12,12 @@ export class AboutComponent implements OnInit {
 
   constructor(private resumeService: ResumeService) { }
 
-  basicInformation$: Information ;
+  basicInformation$: Information;
+  professionalSocials$: Social[];
 
   ngOnInit(): void {
     this.getBasicInformations();
+    this.getProfessionalNetwork();
   }
 
   getBasicInformations() {
@@ -24,10 +27,7 @@ export class AboutComponent implements OnInit {
           if (response == null) {
             console.log("No information found.");
           }
-          console.log("get basic information : " + response);
           this.basicInformation$ = JSON.parse(JSON.stringify(response));
-
-          return this.basicInformation$;
         },
         error => {
           console.log("An error accured => " + error);
@@ -35,6 +35,25 @@ export class AboutComponent implements OnInit {
       );
     } catch (error) {
       console.log("ERROR when fetching basic Informations.");
+      console.log("-> " + error);
+    }
+  }
+
+  getProfessionalNetwork() {
+    try {
+      this.resumeService.fetchProNetworks$().subscribe(
+        response => {
+          if (response == null) {
+            console.log("No professional network found.");
+          }
+          this.professionalSocials$ = JSON.parse(JSON.stringify(response));
+        },
+        error => {
+          console.log("An error accured => " + error);
+        }
+      );
+    } catch (error) {
+      console.log("ERROR when fetching professional networks.");
       console.log("-> " + error);
     }
   }

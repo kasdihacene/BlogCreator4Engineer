@@ -5,20 +5,21 @@ import { ResumeService } from 'src/app/services/resume.service';
 import { spyOnClass } from 'jasmine-es6-spies';
 import { of } from 'rxjs';
 import { Information } from 'src/app/models/Information';
+import { Social } from 'src/app/models/Social';
 
 describe('AboutComponent', () => {
   let component: AboutComponent;
   let fixture: ComponentFixture<AboutComponent>;
-  let resumeService : jasmine.SpyObj<ResumeService>;
+  let resumeService: jasmine.SpyObj<ResumeService>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ AboutComponent ],
+      declarations: [AboutComponent],
       providers: [{
         provide: ResumeService, useFactory: () => spyOnClass(ResumeService)
-    }]
+      }]
     })
-    .compileComponents();
+      .compileComponents();
   }));
 
   beforeEach(() => {
@@ -33,7 +34,7 @@ describe('AboutComponent', () => {
 
   it('should get basic informations from html template', () => {
     resumeService = TestBed.get(ResumeService);
-    const basicInfos : Information = {
+    const basicInfos: Information = {
       fullname: "Hacene KASDI",
       profile: "FullStack craftsman engineer",
       image: "assets/images/hacene-kasdi-avatar.jpg",
@@ -51,6 +52,25 @@ describe('AboutComponent', () => {
     expect(fixture.nativeElement.querySelector('[data-test="address"]').innerText).toEqual("Paris, FRANCE");
     expect(fixture.nativeElement.querySelector('[data-test="email"]').innerText).toEqual("administrator@hacene-kasdi.fr");
     expect(fixture.nativeElement.querySelector('[data-test="website"]').innerText).toEqual("https://www.hacene-kasdi.fr");
+  });
+
+  it('should get professional networks from html template', () => {
+    resumeService = TestBed.get(ResumeService);
+    const socials: Social[] = [
+      {
+        type: "github",
+        link: "https://github.com/kasdihacene",
+        fa_bootstrap: "fab fa-github-alt"
+      }, {
+        type: "linkedin",
+        link: "https://www.linkedin.com/in/hacene-kasdi-142515120/",
+        fa_bootstrap: "fab fa-linkedin-in"
+      }];
+    resumeService.fetchProNetworks$.and.returnValue(of(socials));
+    component.ngOnInit();
+    fixture.detectChanges();
+
+    expect(fixture.nativeElement.querySelectorAll('[data-test="socials"]').length).toBe(2);
   });
 
 });

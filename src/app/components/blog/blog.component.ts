@@ -9,11 +9,14 @@ import { Information } from '../../models/Information';
 })
 export class BlogComponent implements OnInit {
   
-  informations : Information;
+  informations : {
+    skills : [],
+    presentation : ""
+  };
   
   constructor(private informationService: InformationService) {
   
-    this.informations = new Information();
+    this.informations;
   
   }
 

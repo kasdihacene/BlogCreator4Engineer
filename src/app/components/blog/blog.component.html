@@ -7,7 +7,7 @@
                 <h2 class="heading">About Hacene !</h2>
                 <div class="content">
                     <p>
-                        {{informations.presentation}}
+                        informations.presentation
                     </p>
 
                 </div>
@@ -21,14 +21,14 @@
 
     <div class="row">
 
-        <div *ngFor="let skill of informations.skills" class="col-lg-3 col-sm-6 mb-4">
+        <div class="col-lg-3 col-sm-6 mb-4">
             <div class="card h-100">
                 <div class="card-body">
                     <h4 class="card-title">
-                        <div href="#">{{skill.line}} <i class="fas fa-cloud"></i></div>
+                        <div href="#">skill.line <i class="fas fa-cloud"></i></div>
                         <div> <i class="fas fa-cloud"></i></div>
                     </h4>
-                    <p class="card-text">{{skill.samples}}</p>
+                    <p class="card-text">skill.samples</p>
                 </div>
             </div>
         </div>

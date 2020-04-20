@@ -18,6 +18,7 @@ import { AuthGuardService } from './security/auth.guard';
 import { LoginComponent } from './components/login/login.component';
 import { HttpInterceptorService } from './services/http.interceptor.service';
 import { HashLocationStrategy, LocationStrategy } from '@angular/common';
+import { ResumeService } from './services/resume.service';
 
 
 
@@ -53,6 +54,7 @@ import { HashLocationStrategy, LocationStrategy } from '@angular/common';
     ArticleService,
     AuthService,
     AuthGuardService,
+    ResumeService
     
     // On production when reload the page we will have the 404 error
     // because : With client-side SPAs we have two strategies we can 

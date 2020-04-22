@@ -8,3 +8,14 @@
 .productionDate {
     float: right;
 }
+
+.recent-project-image {
+    max-width: 500px;
+    max-height: 600px;
+    object-fit: cover;
+}
+
+.project-item-image {
+    width: 20em;
+    max-height: 300px;
+}

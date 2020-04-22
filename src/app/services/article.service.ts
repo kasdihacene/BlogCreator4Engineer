@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { of, throwError, Observable } from 'rxjs';
+import { throwError, Observable } from 'rxjs';
 import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http';
 import { catchError, tap } from 'rxjs/operators';
 import { Post } from '../models/Post';
@@ -35,7 +35,7 @@ export class ArticleService {
       .post(this.REST_API_SERVER.concat(environment._ENDPOINT_InsertPost), post)
       .pipe(catchError(this.handleError)).subscribe(
         (article: Post) => {
-          console.log("POST ADDED : " + JSON.parse(JSON.stringify(article)))
+          //console.log("POST ADDED : " + JSON.parse(JSON.stringify(article)))
           return article;
         },
         (error: HttpErrorResponse) => {
@@ -44,7 +44,7 @@ export class ArticleService {
   }
 
 
-  fetchPosts(): Observable<Post[]> {
+  fetchArticles(): Observable<Post[]> {
     return this.httpClient
       .get(this.REST_API_SERVER.concat(environment._ENDPOINT_AllPosts))
       .pipe(

@@ -20,8 +20,8 @@ export class HttpInterceptorService implements HttpInterceptor {
 
     private async handleAccess(request: HttpRequest<any>, next: HttpHandler):
         Promise<HttpEvent<any>> {
-        
-            const token = await this.authService.getLocalToken();
+
+        const token = await this.authService.getLocalToken();
         let changedRequest = request;
 
         // HttpHeader object immutable - copy values
@@ -35,11 +35,10 @@ export class HttpInterceptorService implements HttpInterceptor {
             headerSettings['Authorization'] = 'Bearer ' + token;
         }
 
-        //headerSettings['Content-Type'] = 'application/json';
         const newHeader = new HttpHeaders(headerSettings);
-        
+
         changedRequest = request.clone({ headers: newHeader });
-        
+
         return next.handle(changedRequest).toPromise();
     }
 } 

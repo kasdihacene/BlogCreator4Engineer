@@ -5,7 +5,7 @@
             <h2 class="heading">Add an article</h2>
             <div class="content">
 
-                <form [formGroup]="articleForm" (ngSubmit)="addArticle()">
+                <form [formGroup]="articleForm" (ngSubmit)="addArticle()" enctype="multipart/form-data">
 
                     <div class="form-group row">
                         <label for="title" class="col-lg-2 col-md-8 col-mb-6 col-form-label">Article title*</label>
@@ -30,7 +30,7 @@
                     <div class="form-group row">
                         <label for="author" class="col-lg-2 col-md-8 col-mb-6 col-form-label">Author*</label>
                         <div class="col-lg-10 col-md-8 mb-6 col-sm-12">
-                            <input formControlName="author" maxlength="50" class="form-control" type="text" id="author" required>
+                            <input formControlName="author" maxlength="50" class="form-control" type="text" id="author">
                             <div *ngIf="fields.author.touched && fields.author.invalid" class="alert alert-danger">
                                 Author name is required.
                             </div>
@@ -40,7 +40,7 @@
                     <div class="form-group row">
                         <label for="link" class="col-lg-2 col-md-8 col-mb-6 col-form-label">Article remote URL*</label>
                         <div class="col-lg-10 col-md-8 mb-6 col-sm-12">
-                            <input type="url" maxlength="254" formControlName="link" class="form-control" id="link" required>
+                            <input type="url" maxlength="254" formControlName="link" class="form-control" id="link">
                             <div *ngIf="fields.link.touched && fields.link.invalid" class="alert alert-danger">
                                 Remote link is required.
                             </div>
@@ -51,7 +51,7 @@
                     <div class="form-group row">
                         <label for="anAbstract" class="col-lg-2 col-md-8 col-mb-6 col-form-label">Abstract*</label>
                         <div class="col-lg-10 col-md-8 mb-6 col-sm-12">
-                            <textarea maxlength="254" formControlName="anAbstract" class="form-control" type="textarea" id="anAbstract" required></textarea>
+                            <textarea maxlength="254" formControlName="anAbstract" class="form-control" type="textarea" id="anAbstract"></textarea>
                             <div *ngIf="fields.anAbstract.touched && fields.anAbstract.invalid" class="alert alert-danger">
                                 An abstract of the article is required.
                             </div>
@@ -60,18 +60,15 @@
 
                     <div class="form-group row">
 
-                        <div class="input-group mb-3">
-                            <div class="input-group-prepend">
-                                <span class="input-group-text" id="inputGroupFileAddon01">Upload picture</span>
-                            </div>
-                            <div class="custom-file">
-                                <input formControlName="image" type="file" class="custom-file-input" id="image" aria-describedby="inputGroupFileAddon01">
-                                <label class="custom-file-label" for="image">Choose file</label>
-                            </div>
+                        <div class="input-group col-lg-12">
+                            <h6>Upload picture for the current post...</h6>
+
+                            <input formControlName="image" name="photo_profile" id="image" class="btn btn-xs" type="file" (change)="onFileChanged($event);">
+
                         </div>
                     </div>
 
-                    <button class="btn btn-primary" type="submit" [disabled]="!articleForm.valid">Submit post</button>
+                    <button class="btn btn-primary" type="submit" [disabled]="!articleForm.valid || !isFileUpload">Submit post</button>
                 </form>
 
             </div>

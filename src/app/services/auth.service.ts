@@ -47,7 +47,15 @@ export class AuthService {
 
   getLocalToken() {
     const token = localStorage.getItem(environment._LOCALSTORAGE_TOKEN);
-    return token;
+    const expired = this.isExpired(token);
+    console.log("expired ===> "+expired);
+    console.log("expired TOKEN ===> "+token);
+    if (!expired)
+      return token;
+    else {
+      this.removeToken
+      return null;
+    }
   }
 
   private persistToken(token: string) {

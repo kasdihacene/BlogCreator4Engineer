@@ -28,6 +28,8 @@ export class HomeComponent implements OnInit {
           console.log("get all posts : " + response);
           let posts: Post[] = JSON.parse(JSON.stringify(response)).posts;
           this.recentPost = posts.pop();
+          console.log("0000000000000> "+this.recentPost.image)
+          console.log("0000000000000> "+this.recentPost.title)
           this.postArticles$ = posts;
 
           return this.postArticles$;

@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="utf-8">
-    <title>Hacene Blog</title>
+    <title>My Blog</title>
     <base href="./">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
@@ -38,15 +38,16 @@
             <div class="col-lg-2"></div>
             <h2 class="heading">GitHub Activity</h2>
             <!-- Prepare a container for your calendar. -->
-            <div class="col-lg-8 calendar">
+            <div class="col-lg-8 col-sm-10 calendar">
                 <!-- Loading stuff -->
                 Loading the data.
             </div>
 
             <script type="text/javascript">
-                GitHubCalendar(".calendar", "kasdihacene"); // You can change the <repo-name>
+                var repositoryName = "kasdihacene";
+                GitHubCalendar(".calendar", repositoryName); // You can change the <repo-name>
                 // or enable responsive functionality
-                GitHubCalendar(".calendar", "kasdihacene", {
+                GitHubCalendar(".calendar", repositoryName, {
                     responsive: true
                 });
             </script>

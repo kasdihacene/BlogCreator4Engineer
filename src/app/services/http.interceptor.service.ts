@@ -1,13 +1,12 @@
 import { Injectable } from '@angular/core';
 import { HttpInterceptor, HttpRequest, HttpHandler, HttpEvent, HttpHeaders } from '@angular/common/http';
-import { AuthService } from './auth.service';
 import { from } from 'rxjs';
 
 
 @Injectable()
 export class HttpInterceptorService implements HttpInterceptor {
 
-    constructor(private authService: AuthService) { }
+    constructor() { }
 
     intercept(
         req: import("@angular/common/http").HttpRequest<any>,
@@ -21,7 +20,6 @@ export class HttpInterceptorService implements HttpInterceptor {
     private async handleAccess(request: HttpRequest<any>, next: HttpHandler):
         Promise<HttpEvent<any>> {
 
-        const token = await this.authService.getLocalToken();
         let changedRequest = request;
 
         // HttpHeader object immutable - copy values
@@ -29,10 +27,6 @@ export class HttpInterceptorService implements HttpInterceptor {
 
         for (const key of request.headers.keys()) {
             headerSettings[key] = request.headers.getAll(key);
-        }
-
-        if (token) {
-            headerSettings['Authorization'] = 'Bearer ' + token;
         }
 
         const newHeader = new HttpHeaders(headerSettings);

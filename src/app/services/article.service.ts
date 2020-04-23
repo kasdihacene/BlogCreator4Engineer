@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { throwError, Observable } from 'rxjs';
-import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http';
+import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { catchError, tap } from 'rxjs/operators';
 import { Post } from '../models/Post';
 import { environment } from '../../environments/environment';
@@ -29,21 +29,6 @@ export class ArticleService {
       'Something bad happened; please try again later.');
   }
 
-
-  addArticle(post) {
-    return this.httpClient
-      .post(this.REST_API_SERVER.concat(environment._ENDPOINT_InsertPost), post)
-      .pipe(catchError(this.handleError)).subscribe(
-        (article: Post) => {
-          //console.log("POST ADDED : " + JSON.parse(JSON.stringify(article)))
-          return article;
-        },
-        (error: HttpErrorResponse) => {
-          console.log(error);
-        });
-  }
-
-
   fetchArticles(): Observable<Post[]> {
     return this.httpClient
       .get(this.REST_API_SERVER.concat(environment._ENDPOINT_AllPosts))
@@ -53,13 +38,6 @@ export class ArticleService {
         }),
         catchError(this.handleError)
       );
-  }
-
-  postProstImage(fileToUpload): Observable<any> {
-    const formData: any = new FormData();
-    formData.append("file", fileToUpload, fileToUpload.name);
-
-    return this.httpClient.post(this.REST_API_SERVER.concat(environment._ENDPOINT_PostImage), formData);
   }
 
 }

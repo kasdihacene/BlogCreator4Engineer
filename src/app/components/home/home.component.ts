@@ -45,10 +45,4 @@ export class HomeComponent implements OnInit {
     }
   }
 
-  receiveMessage($event) {
-    setTimeout(() => {
-      this.getAllArticles();
-    }, 3000);
-  }
-
 }

@@ -3,7 +3,6 @@ import { HomeComponent } from './home.component';
 import { spyOnClass } from "jasmine-es6-spies";
 import { ArticleService } from '../../services/article.service';
 import { HttpClientModule, HttpClient } from '@angular/common/http';
-import { AuthService } from '../../services/auth.service';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { FormsModule } from '@angular/forms';
 import { Post } from 'src/app/models/Post';
@@ -23,7 +22,7 @@ describe('HomeComponent', () => {
       imports: [FormsModule, HttpClientTestingModule],
       declarations: [HomeComponent],
       providers: [{
-        HttpClientModule, HttpClient, AuthService,
+        HttpClientModule, HttpClient,
         provide: ArticleService, useFactory: () => spyOnClass(ArticleService)
       }]
     })

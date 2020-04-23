@@ -21,12 +21,9 @@
 </header>
 <!--//header-->
 
-
-<div class="container sections-wrapper">
-
+<div class="sections-wrapper">
 
     <div class="row">
-
 
         <div class="secondary col-lg-4 col-12">
             <aside class="info aside section">
@@ -57,56 +54,25 @@
 
             <aside class="skills aside section">
                 <div class="section-inner">
-                    <h2 class="heading">Skills</h2>
+                    <h2 class="heading">Primary skillset</h2>
                     <div class="content">
                         <p class="intro">
-                            Intro about your skills goes here. Keep the list lean and only show your primary skillset. You can always provide a link to your Linkedin or Coderwall profile so people can get more info there.</p>
+                            below the skills exercised daily, either during missions to clients or in personal projects.</p>
 
                         <div class="skillset">
 
-                            <div class="item">
-                                <h3 class="level-title">Python &amp; Django<span class="level-label" data-toggle="tooltip" data-placement="left" data-animation="true" title="You can use the tooltip to explain more about your skill level..."><i
-                                            class="fas fa-info-circle"></i>Expert</span></h3>
-                                <div class="level-bar">
-                                    <div class="level-bar-inner" data-level="96%">
-                                    </div>
-                                </div>
-                                <!--//level-bar-->
-                            </div>
-                            <!--//item-->
+                            <div *ngFor="let item of primarySkills$" class="item">
+                                <h3 class="level-title">{{item.type}}
 
-                            <div class="item">
-                                <h3 class="level-title">Javascript &amp; jQuery<span class="level-label" data-toggle="tooltip" data-placement="left" data-animation="true" title="You can use the tooltip to explain more about your skill level..."><i
-                                            class="fas fa-info-circle"></i>Expert</span></h3>
-                                <div class="level-bar">
-                                    <div class="level-bar-inner" data-level="96%">
-                                    </div>
+                                    <span class="level-label" data-toggle="tooltip" data-placement="left" data-animation="true" title="You can use the tooltip to explain more about your skill level...">
+                                    {{item.occurrences}}</span></h3>
+                                <div class="progress">
+                                    <div class="progress-bar" role="progressbar" [ngStyle]="{'width': item.percentage }" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
                                 </div>
                                 <!--//level-bar-->
                             </div>
-                            <!--//item-->
 
-                            <div class="item">
-                                <h3 class="level-title">HTML5, CSS3, SASS &amp; LESS<span class="level-label" data-toggle="tooltip" data-placement="left" data-animation="true" title="You can use the tooltip to explain more about your skill level..."><i
-                                            class="fas fa-info-circle"></i>Expert</span></h3>
-                                <div class="level-bar">
-                                    <div class="level-bar-inner" data-level="96%">
-                                    </div>
-                                </div>
-                                <!--//level-bar-->
-                            </div>
-                            <!--//item-->
 
-                            <div class="item">
-                                <h3 class="level-title">Ruby on Rails<span class="level-label" data-toggle="tooltip" data-placement="left" data-animation="true" title="You can use the tooltip to explain more about your skill level..."><i
-                                            class="fas fa-info-circle"></i>Pro</span></h3>
-                                <div class="level-bar">
-                                    <div class="level-bar-inner" data-level="85%">
-                                    </div>
-                                </div>
-                                <!--//level-bar-->
-                            </div>
-                            <!--//item-->
 
                             <p><a class="more-link" href="#"><i class="fas fa-external-link-alt"></i>More on
                                     Coderwall</a></p>
@@ -129,49 +95,29 @@
                 <div class="section-inner">
                     <h2 class="heading">Work Experience</h2>
                     <div class="content">
-                        <div class="item">
-                            <h3 class="col-lg-12 title">Co-Founder & Lead Developer - <span class="col-lg-6 place"><a href="#">Startup
-                                Hub</a></span> <span class="col-lg-4 year">(2014 - Present)</span>
-                                <img class="col-lg-2 logo-ssii rounded-circle" src="https://www.sncf.com/themes/contrib/sncf_theme/dist/build/img/logo-sncf.svg?v=1280065105" alt={{basicInformation$?.fullname}} />
+
+                        <div *ngFor="let experience of experiences$" class="item">
+                            <h3 class="col-lg-12 title">{{experience.mission}} - <span class="col-lg-6 place">
+                                <a href="#">{{experience.entreprise}}</a></span>
+                                <span class="col-lg-4 year">({{experience.startDate}} - {{experience.endDate}})</span>
+                                <img class="col-lg-2 logo-ssii rounded-circle" src={{experience.logo}} alt={{basicInformation$?.fullname}} />
                             </h3>
 
-                            <p>Aenean leo ligula, porttitor eu, consequat vitae, eleifend ac, enim. Aliquam lorem ante, dapibus in, viverra quis, feugiat a, tellus. Phasellus viverra nulla ut metus varius laoreet. Donec vitae sapien ut libero venenatis faucibus.
-                                Nullam quis ante. Etiam sit amet orci eget eros faucibus tincidunt.</p>
+                            <p>{{experience.description}}.</p>
+
+                            <ul *ngFor="let socle of experience.socles" class="list-group">
+                                <p></p>
+                                <h3 class="col-lg-12 title"><span class="col-lg-6 place">Socle {{socle.type}}</span></h3>
+                                <li *ngFor="let occu of socle.occurrences" class="list-group-item d-flex">{{occu}}</li>
+                            </ul>
+                            <p></p>
+                            <h3 class="col-lg-12 title"><span class="col-lg-6 place">Téchnologies</span></h3>
+                            <ul *ngFor="let techno of experience.technologies" class="list-group">
+                                <li class="list-group-item d-flex justify-content-between align-items-center">
+                                    <span class="badge badge-primary badge-pill">{{techno.type}}</span> {{techno.occurrences}}
+                                </li>
+                            </ul>
                         </div>
-
-                        <div class="item">
-                            <h3 class="col-lg-12 title">Co-Founder & Lead Developer - <span class="col-lg-6 place"><a href="#">Startup
-                                Hub</a></span> <span class="col-lg-4 year">(2014 - Present)</span>
-                                <img class="col-lg-2 logo-ssii rounded-circle" src="https://pbs.twimg.com/profile_images/882934784443527168/hhRie0Y4_400x400.jpg" alt={{basicInformation$?.fullname}} />
-                            </h3>
-
-                            <p>Aenean leo ligula, porttitor eu, consequat vitae, eleifend ac, enim. Aliquam lorem ante, dapibus in, viverra quis, feugiat a, tellus. Phasellus viverra nulla ut metus varius laoreet. Donec vitae sapien ut libero venenatis faucibus.
-                                Nullam quis ante. Etiam sit amet orci eget eros faucibus tincidunt.</p>
-                        </div>
-
-                        <div class="item">
-                            <h3 class="col-lg-12 title">Co-Founder & Lead Developer - <span class="col-lg-6 place"><a href="#">Startup
-                                Hub</a></span> <span class="col-lg-4 year">(2014 - Present)</span>
-                                <img class="col-lg-2 logo-ssii rounded-circle" src="https://pbs.twimg.com/profile_images/882997172106657792/ZWHj4dmG_400x400.jpg" alt={{basicInformation$?.fullname}} />
-                            </h3>
-
-                            <p>Aenean leo ligula, porttitor eu, consequat vitae, eleifend ac, enim. Aliquam lorem ante, dapibus in, viverra quis, feugiat a, tellus. Phasellus viverra nulla ut metus varius laoreet. Donec vitae sapien ut libero venenatis faucibus.
-                                Nullam quis ante. Etiam sit amet orci eget eros faucibus tincidunt.</p>
-                        </div>
-
-                        <!--//item-->
-                        <div class="item">
-                            <h3 class="title">Software Engineer - <span class="place"><a href="#">Google</a></span>
-                                <span class="year">(2013 - 2014)</span></h3>
-                            <p>Vivamus a tortor eu turpis pharetra consequat quis non metus. Aliquam aliquam, orci eu suscipit pellentesque, mauris dui tincidunt enim. Sed fringilla mauris sit amet nibh. Donec sodales sagittis magna.</p>
-                        </div>
-                        <!--//item-->
-
-                        <div class="item">
-                            <h3 class="title">Software Engineer - <span class="place"><a href="#">eBay</a></span> <span class="year">(2012 - 2013)</span></h3>
-                            <p>Maecenas tempus, tellus eget condimentum rhoncus, sem quam semper libero, sit amet adipiscing sem neque sed ipsum.</p>
-                        </div>
-                        <!--//item-->
 
                     </div>
                     <!--//content-->

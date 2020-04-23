@@ -3,7 +3,6 @@ import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { BlogComponent } from './components/blog/blog.component';
 import { NavBarComponent } from './components/nav-bar/nav-bar.component';
 import { InformationService } from './services/information.service';
 import { HomeComponent } from './components/home/home.component';
@@ -25,7 +24,6 @@ import { ResumeService } from './services/resume.service';
 @NgModule({
   declarations: [
     AppComponent,
-    BlogComponent,
     NavBarComponent,
     HomeComponent,
     AboutComponent,

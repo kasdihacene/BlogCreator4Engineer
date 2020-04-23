@@ -29,8 +29,8 @@ export class HomeComponent implements OnInit {
           }
           console.log("get all posts... ");
           let posts: Post[] = JSON.parse(JSON.stringify(response)).posts;
-          this.recentPost = posts.pop();
           posts.reverse();
+          this.recentPost = posts.pop();
           this.postArticles$ = posts;
 
           return this.postArticles$;

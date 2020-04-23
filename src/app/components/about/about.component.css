@@ -2,3 +2,15 @@
     float: right;
     width: 5.5em;
 }
+
+@media screen and (min-width: 700px) {
+    .sections-wrapper {
+        padding: 2em;
+    }
+}
+
+@media screen and (max-width: 500px) {
+    .sections-wrapper {
+        padding: 1em;
+    }
+}

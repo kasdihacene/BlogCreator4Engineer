@@ -36,9 +36,7 @@ jobs:
       run: npm test --watch=false --code-coverage
 
     - name: Upload coverage to Codecov  
-      uses: codecov/codecov-action@v1
-      with:
-        if: success()
+      if: success()
       run: |
         curl -s https://codecov.io/bash | bash
       env:

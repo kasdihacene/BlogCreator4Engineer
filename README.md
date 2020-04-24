@@ -1,7 +1,5 @@
 # BlogCreator4Engineer
-![Blog-Build-Script CI](https://github.com/kasdihacene/BlogCreator4Engineer/workflows/Blog-workflow/badge.svg)
-
-![codecov.io](https://codecov.io/github/kasdihacene/BlogCreator4Engineer/coverage.svg?branch=master)
+![Blog-Build-Script CI](https://github.com/kasdihacene/BlogCreator4Engineer/workflows/Blog-workflow/badge.svg) [![Build Status](https://travis-ci.com/kasdihacene/BlogCreator4Engineer.svg?branch=master)](https://travis-ci.com/kasdihacene/BlogCreator4Engineer) [![codecov](https://codecov.io/gh/kasdihacene/BlogCreator4Engineer/branch/master/graph/badge.svg)](https://codecov.io/gh/kasdihacene/BlogCreator4Engineer)
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 9.0.6.
 

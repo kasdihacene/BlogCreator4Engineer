@@ -1,8 +1,7 @@
 # BlogCreator4Engineer
-![Blog-Build-Script CI](https://github.com/kasdihacene/BlogCreator4Engineer/workflows/Blog-Build-Script%20CI/badge.svg)
+![Blog-Build-Script CI](https://github.com/kasdihacene/BlogCreator4Engineer/workflows/Blog-workflow/badge.svg)
 
-[![codecov.io](https://codecov.io/github/kasdihacene/BlogCreator4Engineer/coverage.svg?branch=master)]
-(https://codecov.io/github/kasdihacene/BlogCreator4Engineer?branch=master)
+![codecov.io](https://codecov.io/github/kasdihacene/BlogCreator4Engineer/coverage.svg?branch=master)
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 9.0.6.
 
@@ -106,3 +105,4 @@ For redirecting http trafic to https in production environment, we have to add a
 
         > npm install karma karma-coverage --save-dev
         > npm install codecov.io --save # To get code report 
+        > npm install --save-dev karma karma-coverage codecov

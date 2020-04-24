@@ -12,6 +12,6 @@ jobs:
   include:
     - stage: Test coverage
       script:
-        - ng test --browsers=ChromeHeadlessNoSandbox --codeCoverage=true --watch=false
+        - ng test --codeCoverage=true --watch=false
       after_script: 
         - if [[ "$TRAVIS_TEST_RESULT" == 0 ]]; then ./node_modules/.bin/codecov; fi 

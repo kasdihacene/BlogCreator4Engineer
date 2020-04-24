@@ -10,7 +10,8 @@ import { environment } from '../../environments/environment';
 })
 export class ArticleService {
 
-  REST_API_SERVER = environment._ENDPOINT_SERVER_API;
+  REST_API_SERVER = environment._ENDPOINT_JSON_SERVER_API;
+
   posts$: Post[];
 
   constructor(private httpClient: HttpClient) { }

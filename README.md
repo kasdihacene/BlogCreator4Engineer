@@ -3,6 +3,12 @@
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 9.0.6.
 
+### About Blog4Engineer
+An open-source blog to simply share your knowledges, personal achievements, experiences and archived POCs.
+> To begin
+
+        This guide explains the prerequisites for setting up the Blog4Engineer application, a personal blog, on your own platform. This requires some technical knowledge, however the first version [branch-1](https://github.com/kasdihacene/BlogCreator4Engineer/tree/version-1) of the application doesn't require to be an expert to deploy it in production and to obtain your own domain name.
+
 > For the first time you have to install all angular packages 
 
         > npm install

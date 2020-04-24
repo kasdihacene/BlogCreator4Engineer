@@ -15,7 +15,7 @@
                     <h2 *ngIf="recentPost" class="heading">Latest Posts </h2>
                     <div class="content">
 
-                        <div class="item featured text-center" *ngIf="!postArticles$">
+                        <div class="item featured text-center" *ngIf="!recentPost">
                             <h3>
                                 NO CONTENT PUBLISHED YET
                             </h3>
@@ -25,7 +25,7 @@
                             <p class="summary">{{recentPost.projectName}}</p>
                             <div class="recent-project-image featured-image has-ribbon">
                                 <a href={{recentPost.link}} target="_blank">
-                                    <img class="img-fluid img-responsive" src="{{serverUrl}}{{recentPost.image}}" alt="project name" />
+                                    <img class="img-fluid img-responsive" src="{{recentPost.image}}" alt="project name" />
                                 </a>
                                 <div class="ribbon">
                                     <div class="text">New</div>
@@ -47,7 +47,7 @@
                         <div data-test="articleItem" *ngFor="let article of postArticles$ " class="item row">
 
                             <a class="col-md-4 col-12" href={{article.link}} target="_blank">
-                                <img class="project-item-image img-fluid project-image" src="{{serverUrl}}{{article.image}}" alt="{{article.projectName}}" />
+                                <img class="project-item-image img-fluid project-image" src="{{article.image}}" alt="{{article.projectName}}" />
                             </a>
                             <div class="desc col-md-8 col-12">
                                 <h3 class="title productionDate">

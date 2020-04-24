@@ -12,7 +12,7 @@ export class HomeComponent implements OnInit {
 
   postArticles$: Post[];
   recentPost: Post;
-  serverUrl: string = environment._ENDPOINT_SERVER_API;
+  serverUrl = environment._ENDPOINT_DIRECTORY_IMAGES;
 
   constructor(private articleService: ArticleService) { }
 
@@ -28,7 +28,7 @@ export class HomeComponent implements OnInit {
             console.log("No post published yet.");
           }
           console.log("get all posts... ");
-          let posts: Post[] = JSON.parse(JSON.stringify(response)).posts;
+          let posts: Post[] = JSON.parse(JSON.stringify(response));
           posts.reverse();
           this.recentPost = posts.pop();
           this.postArticles$ = posts;

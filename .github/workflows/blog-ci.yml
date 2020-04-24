@@ -35,10 +35,12 @@ jobs:
     - name: Launch Unit Tests 
       run: npm test --watch=false --code-coverage
 
-    - name: Upload coverage
-      if: success()
-      run: |
-        curl -s https://codecov.io/bash | bash
-      env:
-        CODECOV_TOKEN: ${{ secrets.CODECOV_TOKEN }}
-      shell: bash
+    - name: Upload coverage to Codecov  
+      uses: codecov/codecov-action@v1
+      with:
+        if: success()
+        token: ${{ secrets.CODECOV_TOKEN }}
+        file: ./coverage/lcov.info
+        flags: npm test --watch=false --code-coverage
+        name: codecov-umbrella
+        fail_ci_if_error: true

@@ -21,10 +21,14 @@ module.exports = function(config) {
         client: {
             clearContext: false // leave Jasmine Spec Runner output visible in browser
         },
-        coverageIstanbulReporter: {
-            dir: require('path').join(__dirname, './coverage/hacene-blog'),
-            reports: ['html', 'lcovonly', 'text-summary'],
-            fixWebpackSourcePaths: true
+        // Configure code coverage reporter
+        coverageReporter: {
+            reporters: [
+                // generates ./coverage/lcov.info
+                { type: 'lcovonly', subdir: '.' },
+                // generates ./coverage/coverage-final.json
+                { type: 'json', subdir: '.' },
+            ]
         },
         customLaunchers: {
             ChromeHeadless: {

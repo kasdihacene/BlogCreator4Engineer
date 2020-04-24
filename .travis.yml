@@ -1,12 +1,10 @@
 language:
   node_js
-addons:
-  chrome: stable
 env:
   global:
     CODECOV_TOKEN=$CODECOV_TOKEN
 install:
   - npm install -g codecov
 script:
-  - ng test --watch=false --code-coverage
+  - istanbul cover ./node_modules/jasmine/bin/jasmine.js
   - codecov

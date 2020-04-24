@@ -1,9 +1,48 @@
-language:
-  node_js
-env:
-  global:
-    CODECOV_TOKEN=$CODECOV_TOKEN
-install:
-  - npm install -g codecov
-script:
-  - codecov
+language: node_js
+matrix:
+  include:
+    #################
+    # Ubuntu Trusty #
+    #################
+
+    - name: "[Trusty] Node.js v6.x"
+      sudo: required
+      dist: trusty
+      before_install:
+        - sudo apt-get -qq update
+        - sudo apt-get install lldb-3.9 liblldb-3.9-dev lcov -y
+      install:
+        - npm install --llnode_build_addon=true --llnode_coverage=true
+      script: TEST_LLDB_BINARY=`which lldb-3.9` npm run nyc-test-all
+      node_js: "6"
+      after_success:
+        - npm run coverage
+        - npm run codecov-upload
+
+    - name: "[Trusty] Node.js v8.x"
+      sudo: required
+      dist: trusty
+      before_install:
+        - sudo apt-get -qq update
+        - sudo apt-get install lldb-3.9 liblldb-3.9-dev lcov -y
+      install:
+        - npm install --llnode_build_addon=true
+      script: TEST_LLDB_BINARY=`which lldb-3.9` npm run nyc-test-all
+      node_js: "8"
+      after_success:
+        - npm run coverage
+        - npm run codecov-upload
+
+    - name: "[Trusty] Node.js v10.x"
+      sudo: required
+      dist: trusty
+      before_install:
+        - sudo apt-get -qq update
+        - sudo apt-get install lldb-3.9 liblldb-3.9-dev lcov -y
+      install:
+        - npm install --llnode_build_addon=true --llnode_coverage=true
+      script: TEST_LLDB_BINARY=`which lldb-3.9` npm run nyc-test-all
+      node_js: "10"
+      after_success:
+        - npm run coverage
+        - npm run codecov-upload

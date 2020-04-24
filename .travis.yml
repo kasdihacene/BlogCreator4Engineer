@@ -1,14 +1,16 @@
 language:
   node_js
+addons:
+  chrome: stable
 env:
   global:
     CODECOV_TOKEN=$CODECOV_TOKEN    
 before_script:
-  - npm install -g codecov 
+  - yarn install 
 jobs:
   include:
     - stage: Test coverage
       script:
-        - ng test --browsers=ChromeHeadlessNoSandbox --codeCoverage=true --watch=false
+        - ng test --watch=false --code-coverage
       after_script: 
         - if [[ "$TRAVIS_TEST_RESULT" == 0 ]]; then ./node_modules/.bin/codecov; fi  

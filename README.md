@@ -4,11 +4,25 @@
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 9.0.6.
 
 ### About Blog4Engineer
-An open-source blog to simply share your knowledges, personal achievements, experiences and archived POCs :man_technologist:
+An open-source blog for easily sharing your knowledges, personal achievements, experiences and archived POCs :man_technologist:
 
  :white_check_mark: **TO BEGIN**
 
-        This guide explains the prerequisites for setting up the Blog4Engineer application, a personal blog, on your own platform. This requires some technical knowledge, however the first version [branch-1](https://github.com/kasdihacene/BlogCreator4Engineer/tree/version-1) of the application doesn't require to be an expert to deploy it in production and to obtain your own domain name.
+This guide explains the prerequisites for setting up the Blog4Engineer application, a personal blog, on your own platform. This requires some technical knowledge, however the first version [branch-1](https://github.com/kasdihacene/BlogCreator4Engineer/tree/version-1) of the application doesn't require to be an expert to deploy it in production and to obtain your own domain name.
+
+:large_blue_diamond: Version 1
+
+* Retrives you resume from the remote server (JSON Server)
+* Highlights your github activity
+* Retrieves Articles, realized POCs an published Posts.
+
+:large_blue_diamond: **TECH STACK**
+
+        Angular 9
+        Bootstrap 4
+        JSON Server (https://my-json-server.typicode.com/)
+
+:heavy_check_mark: The features are implemented using TDD Test-Driven Development with Outside-In and Inside-Out approaches. 
 
 > For the first time you have to install all angular packages 
 
@@ -108,6 +122,4 @@ For redirecting http trafic to https in production environment, we have to add a
 
 ### Set code coverage 
 
-        > npm install karma karma-coverage --save-dev
-        > npm install codecov.io --save # To get code report 
         > npm install --save-dev karma karma-coverage codecov

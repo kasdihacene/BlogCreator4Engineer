@@ -1,6 +1,14 @@
 language:
   node_js
-install:
-  - npm install -g codecov
-script:
-  - codecov
+env:
+  global:
+    CODECOV_TOKEN=$CODECOV_TOKEN    
+before_script:
+  - npm install -g codecov 
+jobs:
+  include:
+    - stage: Test coverage
+      script:
+        - ng test --browsers=ChromeHeadlessNoSandbox --codeCoverage=true --watch=false
+      after_script: 
+        - if [[ "$TRAVIS_TEST_RESULT" == 0 ]]; then ./node_modules/.bin/codecov; fi  

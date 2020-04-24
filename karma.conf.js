@@ -10,15 +10,23 @@ module.exports = function(config) {
             require('karma-chrome-launcher'),
             require('karma-jasmine-html-reporter'),
             require('karma-coverage-istanbul-reporter'),
-            require('@angular-devkit/build-angular/plugins/karma')
+            require('@angular-devkit/build-angular/plugins/karma'),
+            require('karma-coverage')
+        ],
+        reporters: [
+            'coverage'
         ],
         client: {
             clearContext: false // leave Jasmine Spec Runner output visible in browser
         },
-        coverageIstanbulReporter: {
-            dir: require('path').join(__dirname, './coverage/hacene-blog'),
-            reports: ['html', 'lcovonly', 'text-summary'],
-            fixWebpackSourcePaths: true
+        // Configure code coverage reporter
+        coverageReporter: {
+            reporters: [
+                // generates ./coverage/lcov.info
+                { type: 'lcovonly', subdir: '.' },
+                // generates ./coverage/coverage-final.json
+                { type: 'json', subdir: '.' },
+            ]
         },
         customLaunchers: {
             ChromeHeadless: {

@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="utf-8">
-    <title>Hacene Blog</title>
+    <title>My Blog</title>
     <base href="./">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
@@ -15,6 +15,11 @@
 
     <!-- FontAwesome JS -->
     <script defer src="assets/fontawesome/js/all.js"></script>
+
+    <!-- Github activity calendar JS -->
+    <script src="https://unpkg.com/github-calendar@latest/dist/github-calendar.min.js"></script>
+    <link rel="stylesheet" href="https://unpkg.com/github-calendar@latest/dist/github-calendar-responsive.css" />
+    <!--// Github activity calendar JS -->
     <link id="theme-style" rel="stylesheet" href="assets/css/styles.css">
     <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
@@ -28,12 +33,37 @@
 
     </container>
 
+    <section class="github section">
+        <div class="col-lg-12 section-inner">
+            <div class="col-lg-2"></div>
+            <h2 class="heading">GitHub Activity</h2>
+            <!-- Prepare a container for your calendar. -->
+            <div class="col-lg-8 col-sm-10 calendar">
+                <!-- Loading stuff -->
+                Loading the data.
+            </div>
+
+            <script type="text/javascript">
+                var repositoryName = "kasdihacene";
+                GitHubCalendar(".calendar", repositoryName); // You can change the <repo-name>
+                // or enable responsive functionality
+                GitHubCalendar(".calendar", repositoryName, {
+                    responsive: true
+                });
+            </script>
+
+            <div class="col-lg-2"></div>
+        </div>
+        <!--//secton-inner-->
+    </section>
+
     <!-- ******FOOTER****** -->
     <footer class="footer col-12">
         <div class="container text-center">
             <!--/* This template is free as long as you keep the attribution link below. Thank you for your support. :) If you'd like to use the template without the attribution, you can buy the commercial license via our website: themes.3rdwavemedia.com */-->
-            <small class="copyright">Developped by Hacene KASDI <i class="fas fa-heart"></i> & Designed by <a
-                    href="https://themes.3rdwavemedia.com" target="_blank"> Xiaoying Riley</a></small>
+            <small class="copyright">Developped by Hacene KASDI <i class="fas fa-heart"></i> - Designed by 
+                <a href="https://hacene-kasdi.fr/#/resume" target="_blank"> HMU </a>&</small>
+            <a href="https://themes.3rdwavemedia.com" target="_blank"> Xiaoying Riley</a></small>
         </div>
         <!--//container-->
     </footer>

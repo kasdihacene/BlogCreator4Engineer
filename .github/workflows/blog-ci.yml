@@ -5,9 +5,9 @@ name: Blog-Build-Script CI
 
 on:
   push:
-    branches: [ master ]
+    branches: [ version-1 ]
   pull_request:
-    branches: [ master ]
+    branches: [ version-1 ]
 
 jobs:
   build:
@@ -26,9 +26,25 @@ jobs:
         node-version: ${{ matrix.node-version }}
       env:
         CI: true
-    - name: Install dependencies 
+    - name: Install npm dependencies 
       run: npm ci # Using npm ci is generally faster than running npm install
-    - name: Build 
+    
+    - name: Build project
       run: npm run build --if-present
-    - name: Launch Tests 
+    
+    - name: Launch Unit Tests 
       run: npm test 
+
+    - name: Send mail to notify CI/CD termination
+      if: always()
+      uses: dawidd6/action-send-mail@v2
+      with:
+        server_address: smtp.ionos.fr
+        server_port: 465
+        username: ${{secrets.MAIL_USERNAME}}
+        password: ${{secrets.MAIL_PASSWORD}}
+        subject: Blog4Engineer FRONTEND PIC 
+        body: Build job of [ ${{github.repository}} ] completed with status [ ${{job.status}} ]
+        to: hacene.upmc@gmail.com
+        from: Blog4EngineerCreator PIC
+        content_type: text/html

@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
-import { of, throwError, Observable } from 'rxjs';
-import { HttpClient, HttpHeaders, HttpErrorResponse } from '@angular/common/http';
+import { throwError, Observable } from 'rxjs';
+import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { catchError, tap } from 'rxjs/operators';
 import { Post } from '../models/Post';
 import { environment } from '../../environments/environment';
@@ -29,21 +29,7 @@ export class ArticleService {
       'Something bad happened; please try again later.');
   }
 
-
-  addArticle(post) {
-    return this.httpClient
-      .post(this.REST_API_SERVER.concat(environment._ENDPOINT_InsertPost), post)
-      .pipe(catchError(this.handleError)).subscribe(
-        (article: Post) => {
-          return article;
-        },
-        (error: HttpErrorResponse) => {
-          console.log(error);
-        });
-  }
-
-
-  fetchPosts(): Observable<Post[]> {
+  fetchArticles(): Observable<Post[]> {
     return this.httpClient
       .get(this.REST_API_SERVER.concat(environment._ENDPOINT_AllPosts))
       .pipe(
@@ -53,6 +39,5 @@ export class ArticleService {
         catchError(this.handleError)
       );
   }
-
 
 }

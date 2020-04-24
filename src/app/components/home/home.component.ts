@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ArticleService } from "../../services/article.service";
 import { Post } from 'src/app/models/Post';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-home',
@@ -11,22 +12,24 @@ export class HomeComponent implements OnInit {
 
   postArticles$: Post[];
   recentPost: Post;
+  serverUrl: string = environment._ENDPOINT_SERVER_API;
 
   constructor(private articleService: ArticleService) { }
 
   ngOnInit(): void {
-    this.getAllPosts();
+    this.getAllArticles();
   }
 
-  private getAllPosts(): void {
+  private getAllArticles(): void {
     try {
-      this.articleService.fetchPosts().subscribe(
+      this.articleService.fetchArticles().subscribe(
         response => {
           if (response == null) {
             console.log("No post published yet.");
           }
-          console.log("get all posts : " + response);
+          console.log("get all posts... ");
           let posts: Post[] = JSON.parse(JSON.stringify(response)).posts;
+          posts.reverse();
           this.recentPost = posts.pop();
           this.postArticles$ = posts;
 
@@ -40,13 +43,6 @@ export class HomeComponent implements OnInit {
       console.log("ERROR when fetching Posts.");
       console.log("-> " + error);
     }
-  }
-
-  receiveMessage($event) {
-    console.log("----> " + $event);
-    setTimeout(() => {
-      this.getAllPosts();
-    }, 3000);
   }
 
 }

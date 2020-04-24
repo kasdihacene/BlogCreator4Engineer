@@ -4,6 +4,13 @@
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 9.0.6.
 
+> For the first time you have to install all angular packages 
+
+        > npm install
+        > ng serve [OPTION]
+
+        ## [OPTION] : by default the development mode will be fired else --prod to get the configuration set for production
+
 ## Development server
 
 Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
@@ -92,3 +99,8 @@ For redirecting http trafic to https in production environment, we have to add a
                 RewriteRule (.*) https://%{HTTP_HOST}%{REQUEST_URI}
                 # --
         </IfModule>
+
+### Set code coverage 
+
+        > npm install karma karma-coverage --save-dev
+        > npm install codecov.io --save # To get code report 

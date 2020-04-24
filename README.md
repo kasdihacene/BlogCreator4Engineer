@@ -99,3 +99,8 @@ For redirecting http trafic to https in production environment, we have to add a
                 RewriteRule (.*) https://%{HTTP_HOST}%{REQUEST_URI}
                 # --
         </IfModule>
+
+### Set code coverage 
+
+        > npm install karma karma-coverage --save-dev
+        > npm install codecov.io --save # To get code report 

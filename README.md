@@ -33,7 +33,7 @@ CI/CD
 ### Blog4Engineer Architecture V1
 
 
-![](src/assets/images/projects/version1.PNG)
+![](markdown/version1.PNG)
 
 
 The target data are stored on Github as json file **[db.json]**, A Typicode JSON Server intercepts the request and retrieves the data according to the requested object.

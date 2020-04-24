@@ -32,7 +32,9 @@ CI/CD
 
 ### Blog4Engineer Architecture V1
 
-![](assets/images/projects/version1.PNG)
+![](src/assets/images/projects/version1.PNG?raw=true)
+
+The target data are stored on Github as json file **[db.json]**, A Typicode JSON Server intercepts the request and retrieves the data according to the requested object.
 
 > For the first time you have to install all angular packages 
 

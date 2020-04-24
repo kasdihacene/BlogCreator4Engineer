@@ -5,9 +5,9 @@ name: Blog-Build-Script CI
 
 on:
   push:
-    branches: [ version-1 ]
+    branches: [ master ]
   pull_request:
-    branches: [ version-1 ]
+    branches: [ master ]
 
 jobs:
   build:
@@ -33,18 +33,12 @@ jobs:
       run: npm run build --if-present
     
     - name: Launch Unit Tests 
-      run: npm test 
+      run: npm test
 
-    - name: Send mail to notify CI/CD termination
-      if: always()
-      uses: dawidd6/action-send-mail@v2
-      with:
-        server_address: smtp.ionos.fr
-        server_port: 465
-        username: ${{secrets.MAIL_USERNAME}}
-        password: ${{secrets.MAIL_PASSWORD}}
-        subject: Blog4Engineer FRONTEND PIC 
-        body: Build job of [ ${{github.repository}} ] completed with status [ ${{job.status}} ]
-        to: hacene.upmc@gmail.com
-        from: Blog4EngineerCreator PIC
-        content_type: text/html
+    - name: Upload coverage
+      if: success()
+      run: |
+        curl -s https://codecov.io/bash | bash
+      env:
+        CODECOV_TOKEN: ${{ secrets.CODECOV_TOKEN }}
+      shell: bash

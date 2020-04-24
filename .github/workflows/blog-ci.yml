@@ -33,12 +33,4 @@ jobs:
       run: npm run build --if-present
     
     - name: Launch Unit Tests 
-      run: npm test --watch=false --code-coverage
-
-    - name: Upload coverage to Codecov  
-      if: success()
-      run: |
-        curl -s https://codecov.io/bash | bash
-      env:
-        CODECOV_TOKEN: ${{ secrets.CODECOV_TOKEN }}
-      shell: bash
+      run: npm test

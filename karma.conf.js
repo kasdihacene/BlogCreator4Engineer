@@ -14,25 +14,16 @@ module.exports = function(config) {
             require('karma-coverage-istanbul-reporter'),
             require('@angular-devkit/build-angular/plugins/karma')
         ],
-        preprocessor: {
-            'src/**/*.js': ['coverage']
-        },
-        reporters: [
-            // Output code coverage files
-            'coverage'
-        ],
+
         client: {
             clearContext: false // leave Jasmine Spec Runner output visible in browser
         },
-        // Configure code coverage reporter
-        coverageReporter: {
-            reporters: [
-                // generates ./coverage/lcov.info
-                { type: 'lcovonly', subdir: '.' },
-                // generates ./coverage/coverage-final.json
-                { type: 'json', subdir: '.' },
-            ]
+        coverageIstanbulReporter: {
+            dir: require('path').join(__dirname, './coverage/angular-app-codecov'),
+            reports: ['html', 'lcovonly', 'text-summary'],
+            fixWebpackSourcePaths: true
         },
+        reporters: ['progress', 'kjhtml'],
         customLaunchers: {
             ChromeHeadless: {
                 base: 'Chrome',

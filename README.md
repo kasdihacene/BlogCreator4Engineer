@@ -1,4 +1,4 @@
-# BlogCreator4Engineer
+# Blog4Engineer
 ![Blog-Build-Script CI](https://github.com/kasdihacene/BlogCreator4Engineer/workflows/Blog-workflow/badge.svg) [![Build Status](https://travis-ci.com/kasdihacene/BlogCreator4Engineer.svg?branch=master)](https://travis-ci.com/kasdihacene/BlogCreator4Engineer) [![codecov](https://codecov.io/gh/kasdihacene/BlogCreator4Engineer/branch/master/graph/badge.svg)](https://codecov.io/gh/kasdihacene/BlogCreator4Engineer)
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 9.0.6.
@@ -22,7 +22,17 @@ This guide explains the prerequisites for setting up the Blog4Engineer applicati
         Bootstrap 4
         JSON Server (https://my-json-server.typicode.com/)
 
+CI/CD
+
+        - Github Actions for deploying
+        - Travis for the Build and code coverage
+        - codecov.io for test report
+
 :heavy_check_mark: The features are implemented using TDD Test-Driven Development with Outside-In and Inside-Out approaches. 
+
+### Blog4Engineer Architecture V1
+
+![](assets/images/projects/version1.PNG)
 
 > For the first time you have to install all angular packages 
 

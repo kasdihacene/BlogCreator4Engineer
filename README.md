@@ -16,6 +16,8 @@ This guide explains the prerequisites for setting up the Blog4Engineer applicati
 * Highlights your github activity
 * Retrieves Articles, realized POCs an published Posts.
 
+### :construction_worker: What was it built with? 
+
 :large_blue_diamond: **TECH STACK**
 
         Angular 9
@@ -25,10 +27,10 @@ This guide explains the prerequisites for setting up the Blog4Engineer applicati
 CI/CD
 
         - Github Actions for deploying
-        - Travis for the Build and code coverage
-        - codecov.io for test report
+        - Travis for the Build job and code coverage
+        - codecov.io to get report of tests
 
-:heavy_check_mark: The features are implemented using TDD Test-Driven Development with Outside-In and Inside-Out approaches. 
+:heavy_check_mark: The features are implemented using **TDD Test-Driven Development with Outside-In and Inside-Out approaches**. 
 
 ### Blog4Engineer Architecture V1
 
@@ -38,8 +40,22 @@ CI/CD
 
 The target data are stored on Github as json file **[db.json]**, A Typicode JSON Server intercepts the request and retrieves the data according to the requested object.
 
-> For the first time you have to install all angular packages 
+### :rocket: What do I need to set it up?
 
+:wrench: **Prerequisite :**
+
+        You have to install :
+        - A run-time environment node.js
+        - Node Package Manager npm 
+        - Angular CLI (npm install -g @angular/cli).
+        
+
+You'll need some basic experience with the command line, and access to your own JSON server where you can retrieve the data. And some node.js dependencies to install. 
+
+> For the first time, you have to install Install the dependencies in the local node_modules folder. 
+
+        > git clone <REPOSITORY>
+        > cd <REPOSITORY> 
         > npm install
         > ng serve [OPTION]
 
@@ -52,10 +68,6 @@ Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app w
 ## Code scaffolding
 
 Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
-
-### Create an Angular service
-        
-                ng g s 'service'
 
 ## Build
 
@@ -74,6 +86,11 @@ Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protrac
 ## Further help
 
 To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
+
+
+### Create an Angular service
+        
+                ng g s 'service'
 
 ## Adding Auth Guard Angular 9 on our application
 ### Auth Guard

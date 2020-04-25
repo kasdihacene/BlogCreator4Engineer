@@ -14,15 +14,15 @@ This guide explains the prerequisites for setting up the Blog4Engineer applicati
 
 * Retrives you resume from the remote server (JSON Server)
 * Highlights your github activity
-* Retrieves Articles, realized POCs an published Posts.
+* Retrieves Articles, realized POCs and published Posts.
 
 ### :construction_worker: What was it built with? 
 
 :large_blue_diamond: **TECH STACK**
 
-        Angular 9
-        Bootstrap 4
-        JSON Server (https://my-json-server.typicode.com/)
+        - Angular 9
+        - Bootstrap 4
+        - JSON Server (https://my-json-server.typicode.com/)
 
 CI/CD
 
@@ -39,6 +39,33 @@ CI/CD
 
 
 The target data are stored on Github as json file **[db.json]**, A Typicode JSON Server intercepts the request and retrieves the data according to the requested object.
+
+:large_blue_diamond: Version 2
+
+### Blog4Engineer Architecture V1
+
+![](markdown/version2.PNG)
+
+:large_blue_diamond: **TECH STACK**
+
+**Frontend**
+
+        - Angular 9
+        - Bootstrap 4
+
+**Backend**
+
+        - Microservice architecture
+        - JSON Server (https://my-json-server.typicode.com/)
+        - Java 8 - Spring Boot & Spring security
+        - Docker ( postgreSQL )
+
+**CI/CD**
+
+        - Github Actions for deploying
+        - Travis for the Build job and code coverage
+        - codecov.io to get report of tests
+
 
 ### :rocket: What do I need to set it up?
 

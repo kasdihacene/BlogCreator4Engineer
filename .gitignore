@@ -1,5 +1,6 @@
 .DS_STORE
 
+/coverage
 /production/
 /dist/
 /bazel-out

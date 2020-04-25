@@ -1,0 +1,18 @@
+language: node_js
+node_js:
+    - "12"
+addons:
+  chrome: stable
+env:
+  global:
+    CODECOV_TOKEN=$CODECOV_TOKEN    
+before_script:
+  - yarn install 
+jobs:
+  include:
+    - stage: Test coverage
+      script:
+        - ng test --codeCoverage=true --watch=false
+        # public repo on Travis CI
+      after_success:
+        - bash <(curl -s https://codecov.io/bash)

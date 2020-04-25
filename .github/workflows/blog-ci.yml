@@ -5,9 +5,9 @@ name: Blog-Build-Script CI
 
 on:
   push:
-    branches: [ master ]
+    branches: [ stable-version ]
   pull_request:
-    branches: [ master ]
+    branches: [ stable-version ]
 
 jobs:
   build:

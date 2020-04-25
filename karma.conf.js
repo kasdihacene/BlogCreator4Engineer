@@ -6,6 +6,7 @@ module.exports = function(config) {
         basePath: '',
         frameworks: ['jasmine', '@angular-devkit/build-angular'],
         plugins: [
+            require('karma-coverage'),
             require('karma-jasmine'),
             require('karma-chrome-launcher'),
             require('karma-jasmine-html-reporter'),
@@ -20,6 +21,7 @@ module.exports = function(config) {
             reports: ['html', 'lcovonly', 'text-summary'],
             fixWebpackSourcePaths: true
         },
+        reporters: ['progress', 'kjhtml'],
         customLaunchers: {
             ChromeHeadless: {
                 base: 'Chrome',

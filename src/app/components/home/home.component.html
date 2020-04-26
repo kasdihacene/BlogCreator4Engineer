@@ -10,7 +10,9 @@
 
 
             <section class="latest section">
-                <app-home-update (messageEvent)="receiveMessage($event)"></app-home-update>
+
+                <app-home-update (userConnected)="isUserConnected($event)" (messageEvent)="receiveMessage($event)"></app-home-update>
+
                 <div class="section-inner">
 
                     <h2 *ngIf="recentPost" class="heading">Latest Posts </h2>
@@ -39,6 +41,9 @@
                                 #SpringBoot #CleanCode #Microservices #Angular #CloudAzure #SteamAPI #JAVA8 #LambdaExpression
                             </div>
                             <!--//desc-->
+                            <h3 [hidden]="!isUserAuthenticated" class="title">
+                                <button (click)="remove(recentPost)" type="button" class="btn btn-outline-danger"><i class="fas fa-trash-alt"></i> Delete</button>
+                            </h3>
                             <a class="btn btn-cta-secondary" href={{recentPost.link}} target="_blank"><i class="fas fa-thumbs-up"></i> Read article</a>
                         </div>
 
@@ -54,6 +59,11 @@
                                 <h3 class="title productionDate">
                                     {{article.publicationDate}}
                                 </h3>
+
+                                <h3 [hidden]="!isUserAuthenticated" class="title">
+                                    <button (click)="remove(article)" type="button" class="btn btn-outline-danger"><i class="fas fa-trash-alt"></i> Delete</button>
+                                </h3>
+
                                 <h3 class="title"><a href={{article.link}} target="_blank">
                                     {{article.title}}</a>
                                 </h3>

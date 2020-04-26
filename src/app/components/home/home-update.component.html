@@ -2,7 +2,16 @@
 
     <section class="section">
         <div class="section-inner">
+
             <h2 class="heading">Add an article</h2>
+
+            <div *ngIf="successMessage" style="text-align: center;" class="alert alert-success" role="alert">
+                {{successMessage}}
+            </div>
+            <div *ngIf="errorMessage" style="text-align: center;" class="alert alert-danger" role="alert">
+                {{errorMessage}}
+            </div>
+
             <div class="content">
 
                 <form [formGroup]="articleForm" (ngSubmit)="addArticle()" enctype="multipart/form-data">

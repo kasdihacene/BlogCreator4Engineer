@@ -1,5 +1,6 @@
 export interface Post {
 
+    
     title: string;
     projectName: string;
     publicationDate: string;

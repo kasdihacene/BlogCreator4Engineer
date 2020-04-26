@@ -20,8 +20,12 @@ export class HomeUpdateComponent implements OnInit {
   isFileUpload: boolean;
   isUserAuthenticated: boolean;
   private timer: Observable<any>;
+  errorMessage : string;
+  successMessage : string;
 
   @Output() messageEvent = new EventEmitter<string>();
+
+  @Output() userConnected = new EventEmitter<boolean>();
 
   get fields() {
     return this.articleForm.controls;
@@ -30,7 +34,8 @@ export class HomeUpdateComponent implements OnInit {
   ngOnInit(): void {
 
     this.isUserAuthenticated = this.authService.isUserAuthenticated();
-
+    this.userConnected.emit(this.isUserAuthenticated);
+    
     this.articleForm = new FormGroup({
       title: new FormControl('', [Validators.required, Validators.minLength(10)]),
       projectName: new FormControl('', [Validators.required, Validators.minLength(10)]),
@@ -68,18 +73,31 @@ export class HomeUpdateComponent implements OnInit {
             this.messageEvent.emit("POST-ADDING");
             //Reset the fields of the Article form
             this.articleForm.reset();
+            this.showNotification("SUCCESS","Congratulation, Your post was published !")
           });
-
         },
         (error: HttpErrorResponse) => {
+          this.showNotification("ERROR","An error occurred while adding a Post, try again !")
           console.log(error);
         }
       );
   }
 
-  addPost() {
-    this.articleForm.value.image = "https://hmu-dedikabylie.chickenkiller.com:8443/images/post/e5a74d46-9ce8-4e0f-a468-d75846812d19blackHole.PNG";
-    this.articleService.addArticle(this.articleForm.value);
-    this.messageEvent.emit("POST-ADDING");
+  showNotification(typeMessage, message){
+    this.timer = timer(5000); // 5000 millisecond 
+    
+    if(typeMessage == "ERROR"){
+      this.errorMessage = message;
+    }
+    
+    if(typeMessage == "SUCCESS"){
+      this.successMessage = message;
+    }
+
+    this.timer.subscribe(() => {
+      this.errorMessage = "";
+      this.successMessage = "";
+    });
   }
+
 }

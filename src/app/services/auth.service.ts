@@ -22,8 +22,7 @@ export class AuthService {
         `Backend returned code ${error.status}, ` +
         `body was: ${error.error}`);
     }
-    return throwError(
-      'Something bad happened; please try again later.');
+    return throwError(error.error.message);
   }
 
   public getToken(): Observable<Token> {

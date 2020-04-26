@@ -4,6 +4,7 @@ import { AuthService } from 'src/app/services/auth.service';
 import { User } from 'src/app/models/User';
 import { HttpErrorResponse } from '@angular/common/http';
 import { Router } from '@angular/router';
+import { Observable, timer } from 'rxjs';
 
 @Component({
   selector: 'app-login',
@@ -11,14 +12,16 @@ import { Router } from '@angular/router';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
-
+  
   loginForm: any;
-
+  errorMessage : string;
+  private timer: Observable<any>;
+  
   get fields() {
     return this.loginForm.controls;
   }
   constructor(private authentificationService: AuthService, private router: Router) { }
-
+  
   ngOnInit(): void {
 
     this.loginForm = new FormGroup({
@@ -41,8 +44,21 @@ export class LoginComponent implements OnInit {
         }
       },
       (error: HttpErrorResponse) => {
+        console.log("Error "+error.status);
         console.log(error);
+        this.showNotification("ERROR",error)
       });
+  }
+
+
+  showNotification(typeMessage, message){
+    this.timer = timer(5000); // 5000 millisecond 
+    if(typeMessage == "ERROR"){
+      this.errorMessage = message;
+    }
+    this.timer.subscribe(() => {
+      this.errorMessage = "";
+    });
   }
 
 }

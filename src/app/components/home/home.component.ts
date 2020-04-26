@@ -13,6 +13,7 @@ export class HomeComponent implements OnInit {
   postArticles$: Post[];
   recentPost: Post;
   serverUrl: string = environment._ENDPOINT_SERVER_API;
+  isUserAuthenticated : boolean;
 
   constructor(private articleService: ArticleService) { }
 
@@ -29,8 +30,8 @@ export class HomeComponent implements OnInit {
           }
           console.log("get all posts... ");
           let posts: Post[] = JSON.parse(JSON.stringify(response)).posts;
-          posts.reverse();
           this.recentPost = posts.pop();
+          posts.reverse();
           this.postArticles$ = posts;
 
           return this.postArticles$;
@@ -45,10 +46,19 @@ export class HomeComponent implements OnInit {
     }
   }
 
+  remove(data){
+    console.log("***********")
+    console.log(data.idPost)
+  }
+
   receiveMessage($event) {
     setTimeout(() => {
       this.getAllArticles();
     }, 3000);
+  }
+
+  isUserConnected($event) {
+    this.isUserAuthenticated = $event;
   }
 
 }

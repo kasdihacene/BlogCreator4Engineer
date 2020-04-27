@@ -61,7 +61,7 @@
 
                         <div class="skillset">
 
-                            <div *ngFor="let item of primarySkills$" class="item">
+                            <div data-test="primarySkills" *ngFor="let item of primarySkills$" class="item">
                                 <h3 class="level-title">{{item.type}}
 
                                     <span class="level-label" data-toggle="tooltip" data-placement="left" data-animation="true" title="You can use the tooltip to explain more about your skill level...">
@@ -96,7 +96,7 @@
                     <h2 class="heading">Work Experience</h2>
                     <div class="content">
 
-                        <div *ngFor="let experience of experiences$" class="item">
+                        <div data-test="exps" *ngFor="let experience of experiences$" class="item">
                             <h3 class="col-lg-12 title">{{experience.mission}} - <span class="col-lg-6 place">
                                 <a href="#">{{experience.entreprise}}</a></span>
                                 <span class="col-lg-4 year">({{experience.startDate}} - {{experience.endDate}})</span>

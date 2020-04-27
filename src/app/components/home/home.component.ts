@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ArticleService } from "../../services/article.service";
 import { Post } from 'src/app/models/Post';
 import { environment } from 'src/environments/environment';
+import { Observable, timer } from 'rxjs';
 
 @Component({
   selector: 'app-home',
@@ -13,7 +14,12 @@ export class HomeComponent implements OnInit {
   postArticles$: Post[];
   recentPost: Post;
   serverUrl: string = environment._ENDPOINT_SERVER_API;
-  isUserAuthenticated : boolean;
+  isUserAuthenticated: boolean;
+
+
+  private timer: Observable<any>;
+  errorMessage: string;
+  successMessage: string;
 
   constructor(private articleService: ArticleService) { }
 
@@ -46,19 +52,46 @@ export class HomeComponent implements OnInit {
     }
   }
 
-  remove(data){
-    console.log("***********")
-    console.log(data.idPost)
+  remove(data) {
+
+    this.articleService.removePostById(data.idPost).subscribe(
+      response => {
+        if (response) {
+          this.showNotification("SUCCESS", "A post [ " + data.title + " ] will be deleted !");
+          this.refreshPosts();
+        }
+      },
+      error => {
+        this.showNotification("ERROR", "An error occurred when deleting post [ " + data.title + " ] !");
+        console.log(error);
+      }
+    );
   }
 
   receiveMessage($event) {
-    setTimeout(() => {
-      this.getAllArticles();
-    }, 3000);
+    this.refreshPosts();
   }
 
   isUserConnected($event) {
     this.isUserAuthenticated = $event;
   }
 
+  refreshPosts() {
+    setTimeout(() => {
+      this.getAllArticles();
+    }, 3000);
+  }
+
+  showNotification(typeMessage, message) {
+    this.timer = timer(5000); // 5000 millisecond 
+
+    if (typeMessage == "ERROR") { this.errorMessage = message; }
+
+    if (typeMessage == "SUCCESS") { this.successMessage = message; }
+
+    this.timer.subscribe(() => {
+      this.errorMessage = "";
+      this.successMessage = "";
+    });
+  }
 }

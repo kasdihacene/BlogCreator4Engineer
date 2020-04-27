@@ -71,6 +71,7 @@ describe('AboutComponent', () => {
     fixture.detectChanges();
 
     expect(fixture.nativeElement.querySelectorAll('[data-test="socials"]').length).toBe(2);
+    
   });
 
 });

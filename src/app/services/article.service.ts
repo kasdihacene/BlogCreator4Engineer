@@ -43,11 +43,11 @@ export class ArticleService {
   }
 
 
-  fetchArticles(): Observable<Post[]> {
+  fetchArticles(): Observable<Object> {
     return this.httpClient
       .get(this.REST_API_SERVER.concat(environment._ENDPOINT_AllPosts))
       .pipe(
-        tap((data: Post[]) => {
+        tap((data: Object) => {
           return data;
         }),
         catchError(this.handleError)
@@ -59,6 +59,17 @@ export class ArticleService {
     formData.append("file", fileToUpload, fileToUpload.name);
 
     return this.httpClient.post(this.REST_API_SERVER.concat(environment._ENDPOINT_PostImage), formData);
+  }
+
+  removePostById(idPost: number): Observable<Object> {
+    const param = "?id=" + idPost;
+    return this.httpClient.delete(this.REST_API_SERVER.concat(environment._ENDPOINT_DeletePost).concat(param))
+    .pipe(tap((data: Object) => {
+        return data;
+      }),
+      catchError(this.handleError)
+    );
+
   }
 
 }

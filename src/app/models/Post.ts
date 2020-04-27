@@ -1,6 +1,6 @@
 export interface Post {
 
-    
+    idPost: number;
     title: string;
     projectName: string;
     publicationDate: string;

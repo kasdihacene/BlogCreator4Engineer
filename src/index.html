@@ -5,9 +5,14 @@
     <meta charset="utf-8">
     <title>Hacene Blog</title>
     <base href="./">
+
+    <meta name="description" content="Free blog for engineers, developped with Angular 9 and designed with bootstrap 4">
+    <meta name="keywords" content="Java, Angular 9, Software craftsman">
+    <meta name="author" content="Hacene KASDI">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
-    <link rel="icon" type="image/x-icon" href="favicon.ico">
+
+    <link rel="icon" type="image/x-icon" href="assets/images/hacene-kasdi-avatar.jpg">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 
     <link href='https://fonts.googleapis.com/css?family=Lato:300,400,300italic,400italic' rel='stylesheet' type='text/css'>
@@ -20,6 +25,7 @@
     <script src="https://unpkg.com/github-calendar@latest/dist/github-calendar.min.js"></script>
     <link rel="stylesheet" href="https://unpkg.com/github-calendar@latest/dist/github-calendar-responsive.css" />
     <!--// Github activity calendar JS -->
+
     <link id="theme-style" rel="stylesheet" href="assets/css/styles.css">
     <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
@@ -44,9 +50,8 @@
             </div>
 
             <script type="text/javascript">
-                GitHubCalendar(".calendar", "kasdihacene"); // You can change the <repo-name>
-                // or enable responsive functionality
-                GitHubCalendar(".calendar", "kasdihacene", {
+                // Enable responsive functionality
+                GitHubCalendar(".calendar", "kasdihacene", { // You can change the <repo-name>
                     responsive: true
                 });
             </script>

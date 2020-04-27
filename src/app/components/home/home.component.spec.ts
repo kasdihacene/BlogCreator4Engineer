@@ -6,7 +6,7 @@ import { HttpClientModule, HttpClient } from '@angular/common/http';
 import { AuthService } from '../../services/auth.service';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { FormsModule } from '@angular/forms';
-import { Post } from 'src/app/models/Post';
+import { of } from 'rxjs';
 
 describe('HomeComponent', () => {
 
@@ -14,7 +14,7 @@ describe('HomeComponent', () => {
   let fixture: ComponentFixture<HomeComponent>;
 
   let httpClient: HttpClient;
-  let articleService: ArticleService;
+  let articleService: jasmine.SpyObj<ArticleService>;
 
 
   beforeEach(async(() => {
@@ -33,44 +33,75 @@ describe('HomeComponent', () => {
   beforeEach(() => {
     fixture = TestBed.createComponent(HomeComponent);
     component = fixture.componentInstance;
+    fixture.detectChanges();
+  });
+
+  beforeEach(() => {
+    articleService = TestBed.get(ArticleService);
+
+    let posts = {
+      "posts": [
+        {
+          idPost: 1,
+          title: "Power of streams in java 8",
+          projectName: "Insrtance Project",
+          publicationDate: "22/03/2020",
+          link: "/",
+          author: "Hacene KASDI",
+          anAbstract: "To be completed ...",
+          image: ""
+        },
+        {
+          idPost: 2,
+          title: "Power of streams in java 8",
+          projectName: "Insrtance Project",
+          publicationDate: "22/03/2020",
+          link: "/",
+          author: "Hacene KASDI",
+          anAbstract: "To be completed ...",
+          image: ""
+        },
+        {
+          idPost: 44,
+          title: "Power of streams in java 8",
+          projectName: "Insrtance Project",
+          publicationDate: "22/03/2020",
+          link: "/",
+          author: "Hacene KASDI",
+          anAbstract: "To be completed ...",
+          image: ""
+        }
+      ]
+    };
+
+    articleService.fetchArticles.and.returnValue(of(posts));
+    component.isUserAuthenticated = true;
+
+    component.ngOnInit();
+    fixture.detectChanges();
   });
 
   it('should create', () => {
     expect(component).toBeTruthy();
-    fixture.detectChanges();
   });
 
   // Mocking Article Service
-  it('should return correct fields of article in blog', () => {
+  it('should fetch all posts', () => {
 
-    // Spy on and mock httpClient 
-    httpClient = TestBed.get(HttpClient);
-    let posts: Post[];
-    posts = [
-      {
-        title: "Power of streams in java 8",
-        projectName: "Insrtance Project",
-        publicationDate: "22/03/2020",
-        link: "/",
-        author: "Hacene KASDI",
-        anAbstract: "To be completed ...",
-        image: ""
-      },
-      {
-        title: "Power of streams in java 8",
-        projectName: "Insrtance Project",
-        publicationDate: "22/03/2020",
-        link: "/",
-        author: "Hacene KASDI",
-        anAbstract: "To be completed ...",
-        image: ""
-      }
-    ];
-    // Use our service to get list of posts
+    component.ngOnInit();
+    fixture.detectChanges();
 
-    // Verify that our service returns the mocked data as supposed
+    expect(fixture.nativeElement.querySelectorAll('[data-test="articleItem"]').length).toBe(2);
 
-    // Verify that the service call the right Http endpoint
+  });
+
+  it('should remove a post when delete asked', () => {
+    spyOn(component, 'remove');
+
+    fixture.debugElement.nativeElement.querySelector('.remove').click();
+
+    expect(component.remove).toHaveBeenCalled();
+
   });
 
 

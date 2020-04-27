@@ -8,6 +8,7 @@ export const environment = {
   _ENDPOINT_PostImage : "/post/image",
   _ENDPOINT_Login : "/user/login",
   _ENDPOINT_TokenGenerate : "/token/generate",
+  _ENDPOINT_DeletePost : "/post/delete",
   _LOCALSTORAGE_TOKEN : "TOKEN",
 
   _ENDPOINT_JSON_SERVER_API : "https://my-json-server.typicode.com/kasdihacene/JsonServer/",

@@ -91,9 +91,6 @@ export class AboutComponent implements OnInit {
             console.log("No experience found.");
           }
           this.primarySkills$ = JSON.parse(JSON.stringify(response));
-          console.log("----> "+this.primarySkills$[0].type)
-          console.log("----> "+this.primarySkills$[0].occurrences)
-          console.log("----> "+this.primarySkills$[0].percentage)
         },
         error => {
           console.log("An error accured => " + error);

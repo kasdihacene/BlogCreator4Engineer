@@ -18,6 +18,13 @@
                     <h2 *ngIf="recentPost" class="heading">Latest Posts </h2>
                     <div class="content">
 
+                        <div *ngIf="successMessage" style="text-align: center;" class="alert alert-success" role="alert">
+                            {{successMessage}}
+                        </div>
+                        <div *ngIf="errorMessage" style="text-align: center;" class="alert alert-danger" role="alert">
+                            {{errorMessage}}
+                        </div>
+
                         <div class="item featured text-center" *ngIf="!postArticles$">
                             <h3>
                                 NO CONTENT PUBLISHED YET
@@ -42,7 +49,7 @@
                             </div>
                             <!--//desc-->
                             <h3 [hidden]="!isUserAuthenticated" class="title">
-                                <button (click)="remove(recentPost)" type="button" class="btn btn-outline-danger"><i class="fas fa-trash-alt"></i> Delete</button>
+                                <button (click)="remove(recentPost)" type="button" class="remove btn btn-outline-danger"><i class="fas fa-trash-alt"></i> Delete</button>
                             </h3>
                             <a class="btn btn-cta-secondary" href={{recentPost.link}} target="_blank"><i class="fas fa-thumbs-up"></i> Read article</a>
                         </div>

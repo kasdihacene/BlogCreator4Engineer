@@ -42,6 +42,13 @@ The target data are stored on Github as json file **[db.json]**, A Typicode JSON
 
 :large_blue_diamond: Version 2
 
+* Retrives you resume from the remote server (JSON Server)
+* Highlights your github activity
+* Retrieves Articles, realized POCs and published Posts.
+
+* Se connecter en tant qu'administrateur à votre blog.
+* Ajouter ou supprimer des Posts (Articles).
+
 ### Blog4Engineer Architecture V2
 
 ![](markdown/version2.PNG)
